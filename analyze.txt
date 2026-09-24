@@ -1,0 +1,135 @@
+Analyzing ascent...                                             
+
+warning • Unused import: 'package:ascent/core/error/exceptions.dart' • $dataBase/datasources/remote/supabase_fatigue_data_source.dart:1:8 • unused_import
+   info • Sort directive sections alphabetically • $dataBase/datasources/remote/supabase_fatigue_data_source.dart:5:1 • directives_ordering
+warning • The type argument(s) of 'List' can't be inferred • $dataBase/datasources/remote/supabase_fatigue_data_source.dart:34:54 • inference_failure_on_collection_literal
+warning • The type argument(s) of 'List' can't be inferred • $dataBase/datasources/remote/supabase_fatigue_data_source.dart:40:59 • inference_failure_on_collection_literal
+   info • Statements in an if should be enclosed in a block • $dataBase/repositories/fatigue_repository_impl.dart:25:13 • curly_braces_in_flow_control_structures
+   info • Sort directive sections alphabetically • lib/core/network/sync_service.dart:3:1 • directives_ordering
+warning • The type argument(s) of the function 'rpc' can't be inferred • lib/features/auth/data/datasources/remote/supabase_auth_data_source.dart:105:23 • inference_failure_on_function_invocation
+  error • The argument type 'dynamic' can't be assigned to the parameter type 'String'.  • lib/features/billing/data/datasources/remote/supabase_billing_data_source.dart:19:40 • argument_type_not_assignable
+   info • Sort directive sections alphabetically • lib/features/coaching/data/datasources/remote/supabase_coaching_data_source.dart:3:1 • directives_ordering
+   info • The imported package 'uuid' isn't a dependency of the importing package • lib/features/coaching/data/datasources/remote/supabase_coaching_data_source.dart:6:8 • depend_on_referenced_packages
+warning • Dead code • lib/features/coaching/data/datasources/remote/supabase_coaching_data_source.dart:70:29 • dead_code
+warning • The left operand can't be null, so the right operand is never executed • lib/features/coaching/data/datasources/remote/supabase_coaching_data_source.dart:70:32 • dead_null_aware_expression
+warning • The type of error can't be inferred; a type must be explicitly provided • lib/features/coaching/data/repositories/coaching_repository_impl.dart:22:23 • inference_failure_on_untyped_parameter
+   info • Sort directive sections alphabetically • lib/features/coaching/domain/usecases/generate_invite_code.dart:4:1 • directives_ordering
+   info • Use 'package:' imports for files in the 'lib' directory • lib/features/coaching/presentation/bloc/invite/invite_bloc.dart:7:8 • always_use_package_imports
+   info • Use 'package:' imports for files in the 'lib' directory • lib/features/coaching/presentation/bloc/invite/invite_bloc.dart:8:8 • always_use_package_imports
+   info • Use 'package:' imports for files in the 'lib' directory • lib/features/coaching/presentation/bloc/roster/roster_bloc.dart:9:8 • always_use_package_imports
+   info • Use 'package:' imports for files in the 'lib' directory • lib/features/coaching/presentation/bloc/roster/roster_bloc.dart:10:8 • always_use_package_imports
+warning • Unused import: 'package:ascent/features/progressions/domain/entities/client_progression_status.dart' • lib/features/coaching/presentation/pages/client_detail_page.dart:3:8 • unused_import
+  error • The name 'AuthenticatedClient' isn't defined, so it can't be used in an 'is' expression • lib/features/coaching/presentation/pages/client_shell_page.dart:41:22 • type_test_with_undefined_name
+  error • The getter 'user' isn't defined for the type 'AuthState' • lib/features/coaching/presentation/pages/client_shell_page.dart:42:33 • undefined_getter
+  error • The name 'AuthenticatedCoach' isn't defined, so it can't be used in an 'is' expression • lib/features/coaching/presentation/pages/coach_shell_page.dart:45:22 • type_test_with_undefined_name
+  error • The getter 'user' isn't defined for the type 'AuthState' • lib/features/coaching/presentation/pages/coach_shell_page.dart:46:33 • undefined_getter
+warning • The type argument(s) of the function 'showDialog' can't be inferred • lib/features/coaching/presentation/pages/roster_page.dart:33:5 • inference_failure_on_function_invocation
+   info • Sort directive sections alphabetically • lib/features/exercises/data/repositories/exercise_repository_impl.dart:2:1 • directives_ordering
+   info • Sort directive sections alphabetically • lib/features/exercises/data/repositories/exercise_repository_impl.dart:5:1 • directives_ordering
+   info • Sort directive sections alphabetically • lib/features/exercises/domain/repositories/exercise_repository.dart:2:1 • directives_ordering
+   info • Sort directive sections alphabetically • lib/features/exercises/domain/usecases/get_exercises.dart:2:1 • directives_ordering
+   info • Sort directive sections alphabetically • lib/features/exercises/presentation/bloc/exercise_bloc.dart:2:1 • directives_ordering
+   info • Sort directive sections alphabetically • lib/features/exercises/presentation/pages/exercises_page.dart:3:1 • directives_ordering
+warning • Unused import: 'package:ascent/core/error/exceptions.dart' • lib/features/fatigue/data/datasources/remote/supabase_fatigue_data_source.dart:1:8 • unused_import
+   info • Sort directive sections alphabetically • lib/features/fatigue/data/datasources/remote/supabase_fatigue_data_source.dart:5:1 • directives_ordering
+warning • The type argument(s) of 'List' can't be inferred • lib/features/fatigue/data/datasources/remote/supabase_fatigue_data_source.dart:34:54 • inference_failure_on_collection_literal
+warning • The type argument(s) of 'List' can't be inferred • lib/features/fatigue/data/datasources/remote/supabase_fatigue_data_source.dart:40:59 • inference_failure_on_collection_literal
+warning • The type argument(s) of the constructor 'MaterialPageRoute' can't be inferred • lib/features/messaging/presentation/pages/conversations_list_page.dart:56:29 • inference_failure_on_instance_creation
+   info • Sort directive sections alphabetically • lib/features/programs/data/datasources/remote/supabase_programs_data_source.dart:3:1 • directives_ordering
+   info • The imported package 'uuid' isn't a dependency of the importing package • lib/features/programs/data/datasources/remote/supabase_programs_data_source.dart:8:8 • depend_on_referenced_packages
+   info • Use the null-aware marker '?' rather than a null check via an 'if' • lib/features/programs/data/datasources/remote/supabase_programs_data_source.dart:58:13 • use_null_aware_elements
+   info • Use the null-aware marker '?' rather than a null check via an 'if' • lib/features/programs/data/datasources/remote/supabase_programs_data_source.dart:110:13 • use_null_aware_elements
+   info • Use the null-aware marker '?' rather than a null check via an 'if' • lib/features/programs/data/datasources/remote/supabase_programs_data_source.dart:111:13 • use_null_aware_elements
+   info • Use the null-aware marker '?' rather than a null check via an 'if' • lib/features/programs/data/datasources/remote/supabase_programs_data_source.dart:113:13 • use_null_aware_elements
+   info • Use the null-aware marker '?' rather than a null check via an 'if' • lib/features/programs/data/datasources/remote/supabase_programs_data_source.dart:115:13 • use_null_aware_elements
+   info • Sort directive sections alphabetically • lib/features/programs/presentation/bloc/builder/program_builder_bloc.dart:8:1 • directives_ordering
+   info • Sort directive sections alphabetically • lib/features/programs/presentation/bloc/workout/workout_logging_bloc.dart:8:1 • directives_ordering
+warning • The value of the field '_evaluateProgressionUnlock' isn't used • lib/features/programs/presentation/bloc/workout/workout_logging_bloc.dart:31:35 • unused_field
+   info • The imported package 'uuid' isn't a dependency of the importing package • lib/features/programs/presentation/pages/active_workout_page.dart:10:8 • depend_on_referenced_packages
+warning • The type argument(s) of the function 'showDialog' can't be inferred • lib/features/programs/presentation/pages/active_workout_page.dart:78:5 • inference_failure_on_function_invocation
+   info • The imported package 'uuid' isn't a dependency of the importing package • lib/features/progressions/data/datasources/remote/supabase_progressions_data_source.dart:7:8 • depend_on_referenced_packages
+warning • The type of error can't be inferred; a type must be explicitly provided • lib/features/progressions/data/repositories/progressions_repository_impl.dart:28:23 • inference_failure_on_untyped_parameter
+   info • Statements in an if should be enclosed in a block • lib/features/progressions/data/repositories/progressions_repository_impl.dart:30:13 • curly_braces_in_flow_control_structures
+warning • The type of error can't be inferred; a type must be explicitly provided • lib/features/progressions/data/repositories/progressions_repository_impl.dart:50:23 • inference_failure_on_untyped_parameter
+   info • Statements in an if should be enclosed in a block • lib/features/progressions/data/repositories/progressions_repository_impl.dart:52:13 • curly_braces_in_flow_control_structures
+warning • The type of error can't be inferred; a type must be explicitly provided • lib/features/progressions/data/repositories/progressions_repository_impl.dart:122:23 • inference_failure_on_untyped_parameter
+   info • Statements in an if should be enclosed in a block • lib/features/progressions/data/repositories/progressions_repository_impl.dart:124:13 • curly_braces_in_flow_control_structures
+   info • Sort directive sections alphabetically • lib/features/progressions/presentation/bloc/builder/progression_builder_bloc.dart:9:1 • directives_ordering
+   info • Use 'package:' imports for files in the 'lib' directory • lib/features/progressions/presentation/bloc/list/progressions_list_bloc.dart:9:8 • always_use_package_imports
+   info • Use 'package:' imports for files in the 'lib' directory • lib/features/progressions/presentation/bloc/list/progressions_list_bloc.dart:10:8 • always_use_package_imports
+warning • The '!' will have no effect because the receiver can't be null • lib/features/progressions/presentation/bloc/list/progressions_list_bloc.dart:43:38 • unnecessary_non_null_assertion
+warning • Unused import: 'package:ascent/features/progressions/domain/entities/progression_level.dart' • lib/features/progressions/presentation/pages/progression_builder_page.dart:2:8 • unused_import
+warning • The type argument(s) of the function 'showModalBottomSheet' can't be inferred • lib/features/progressions/presentation/pages/progression_builder_page.dart:30:5 • inference_failure_on_function_invocation
+   info • The imported package 'uuid' isn't a dependency of the importing package • lib/features/readiness/presentation/bloc/readiness_bloc.dart:8:8 • depend_on_referenced_packages
+warning • The type argument(s) of the constructor 'Right' can't be inferred • test/features/billing/data/repositories/billing_repository_impl_test.dart:32:28 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Left' can't be inferred • test/features/billing/data/repositories/billing_repository_impl_test.dart:42:28 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Left' can't be inferred • test/features/billing/data/repositories/billing_repository_impl_test.dart:52:28 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Right' can't be inferred • test/features/billing/data/repositories/billing_repository_impl_test.dart:86:28 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Left' can't be inferred • test/features/billing/data/repositories/billing_repository_impl_test.dart:95:28 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Left' can't be inferred • test/features/billing/data/repositories/billing_repository_impl_test.dart:104:28 • inference_failure_on_instance_creation
+warning • The generic type 'Right<dynamic, dynamic>' should have explicit type arguments but doesn't • test/features/billing/data/repositories/billing_repository_impl_test.dart:126:15 • strict_raw_type
+warning • The type argument(s) of the constructor 'Left' can't be inferred • test/features/billing/data/repositories/billing_repository_impl_test.dart:140:17 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Left' can't be inferred • test/features/billing/data/repositories/billing_repository_impl_test.dart:154:17 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Right' can't be inferred • test/features/billing/domain/usecases/check_subscription_status_test.dart:34:20 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Left' can't be inferred • test/features/billing/domain/usecases/check_subscription_status_test.dart:45:26 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Right' can't be inferred • test/features/billing/domain/usecases/create_checkout_session_test.dart:28:26 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Left' can't be inferred • test/features/billing/domain/usecases/create_checkout_session_test.dart:39:26 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Right' can't be inferred • test/features/billing/domain/usecases/watch_subscription_status_test.dart:34:34 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Left' can't be inferred • test/features/billing/domain/usecases/watch_subscription_status_test.dart:44:40 • inference_failure_on_instance_creation
+   info • Sort directive sections alphabetically • test/features/billing/presentation/pages/billing_page_test.dart:2:1 • directives_ordering
+warning • Unused import: 'package:ascent/core/di/injection.dart' • test/features/billing/presentation/pages/billing_page_test.dart:2:8 • unused_import
+   info • Sort directive sections alphabetically • test/features/billing/presentation/pages/billing_page_test.dart:17:1 • directives_ordering
+warning • The type argument(s) of the function 'right' can't be inferred • test/features/fatigue/data/repositories/fatigue_repository_impl_test.dart:41:47 • inference_failure_on_function_invocation
+warning • The type argument(s) of the function 'left' can't be inferred • test/features/fatigue/data/repositories/fatigue_repository_impl_test.dart:54:47 • inference_failure_on_function_invocation
+warning • The type argument(s) of the function 'left' can't be inferred • test/features/fatigue/data/repositories/fatigue_repository_impl_test.dart:66:47 • inference_failure_on_function_invocation
+warning • The type argument(s) of the function 'right' can't be inferred • test/features/fatigue/domain/usecases/watch_client_fatigue_data_test.dart:36:34 • inference_failure_on_function_invocation
+warning • The type argument(s) of the function 'left' can't be inferred • test/features/fatigue/domain/usecases/watch_client_fatigue_data_test.dart:48:34 • inference_failure_on_function_invocation
+   info • Sort directive sections alphabetically • test/features/fatigue/presentation/pages/fatigue_dashboard_page_debug_test.dart:2:1 • directives_ordering
+   info • Sort directive sections alphabetically • test/features/fatigue/presentation/pages/fatigue_dashboard_page_debug_test.dart:3:1 • directives_ordering
+   info • Don't invoke 'print' in production code • test/features/fatigue/presentation/pages/fatigue_dashboard_page_debug_test.dart:30:5 • avoid_print
+warning • Unused import: 'package:ascent/features/fatigue/presentation/bloc/fatigue_dashboard_event.dart' • test/features/fatigue/presentation/pages/fatigue_dashboard_page_test.dart:5:8 • unused_import
+warning • Unused import: 'package:bloc_test/bloc_test.dart' • test/features/fatigue/presentation/pages/fatigue_dashboard_page_test.dart:9:8 • unused_import
+warning • Unused import: 'package:ascent/core/error/failures.dart' • test/features/messaging/presentation/pages/conversations_list_page_test.dart:2:8 • unused_import
+warning • Unused import: 'package:fpdart/fpdart.dart' • test/features/programs/data/repositories/programs_repository_impl_test.dart:16:8 • unused_import
+warning • The type argument(s) of the function 'right' can't be inferred • test/features/programs/domain/usecases/add_program_block_test.dart:55:20 • inference_failure_on_function_invocation
+warning • The type argument(s) of the function 'left' can't be inferred • test/features/programs/domain/usecases/add_program_block_test.dart:79:20 • inference_failure_on_function_invocation
+warning • The type argument(s) of the function 'right' can't be inferred • test/features/programs/domain/usecases/add_set_log_test.dart:67:20 • inference_failure_on_function_invocation
+warning • The type argument(s) of the function 'left' can't be inferred • test/features/programs/domain/usecases/add_set_log_test.dart:97:20 • inference_failure_on_function_invocation
+warning • The type argument(s) of the constructor 'Right' can't be inferred • test/features/programs/domain/usecases/complete_session_test.dart:41:26 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Left' can't be inferred • test/features/programs/domain/usecases/complete_session_test.dart:63:20 • inference_failure_on_instance_creation
+  error • The named parameter 'createdAt' is required, but there's no corresponding argument • test/features/programs/domain/usecases/create_program_test.dart:36:20 • missing_required_argument
+  error • The named parameter 'status' isn't defined • test/features/programs/domain/usecases/create_program_test.dart:43:5 • undefined_named_parameter
+warning • The type argument(s) of the function 'right' can't be inferred • test/features/programs/domain/usecases/create_program_test.dart:60:20 • inference_failure_on_function_invocation
+warning • The type argument(s) of the function 'left' can't be inferred • test/features/programs/domain/usecases/create_program_test.dart:86:20 • inference_failure_on_function_invocation
+warning • The type argument(s) of the constructor 'Right' can't be inferred • test/features/programs/domain/usecases/duplicate_block_test.dart:38:26 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Left' can't be inferred • test/features/programs/domain/usecases/duplicate_block_test.dart:58:20 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Right' can't be inferred • test/features/programs/domain/usecases/duplicate_week_test.dart:41:26 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Left' can't be inferred • test/features/programs/domain/usecases/duplicate_week_test.dart:63:20 • inference_failure_on_instance_creation
+  error • The class 'SetLog' can't be implemented outside of its library because it's a final class • test/features/programs/domain/usecases/log_set_test.dart:11:42 • invalid_use_of_type_outside_library
+warning • The type argument(s) of the constructor 'Right' can't be inferred • test/features/programs/domain/usecases/log_set_test.dart:32:26 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Left' can't be inferred • test/features/programs/domain/usecases/log_set_test.dart:46:20 • inference_failure_on_instance_creation
+  error • The class 'WorkoutSession' can't be implemented outside of its library because it's a final class • test/features/programs/domain/usecases/schedule_workout_session_test.dart:11:50 • invalid_use_of_type_outside_library
+warning • The type argument(s) of the constructor 'Right' can't be inferred • test/features/programs/domain/usecases/schedule_workout_session_test.dart:46:20 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Left' can't be inferred • test/features/programs/domain/usecases/schedule_workout_session_test.dart:68:20 • inference_failure_on_instance_creation
+  error • The class 'Program' can't be implemented outside of its library because it's a final class • test/features/programs/domain/usecases/watch_client_programs_test.dart:11:43 • invalid_use_of_type_outside_library
+warning • The type argument(s) of the constructor 'Right' can't be inferred • test/features/programs/domain/usecases/watch_client_programs_test.dart:34:26 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Left' can't be inferred • test/features/programs/domain/usecases/watch_client_programs_test.dart:47:26 • inference_failure_on_instance_creation
+  error • The class 'ProgramBlock' can't be implemented outside of its library because it's a final class • test/features/programs/domain/usecases/watch_program_blocks_test.dart:11:48 • invalid_use_of_type_outside_library
+warning • The type argument(s) of the constructor 'Right' can't be inferred • test/features/programs/domain/usecases/watch_program_blocks_test.dart:34:26 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Left' can't be inferred • test/features/programs/domain/usecases/watch_program_blocks_test.dart:47:26 • inference_failure_on_instance_creation
+  error • The class 'WorkoutSession' can't be implemented outside of its library because it's a final class • test/features/programs/domain/usecases/watch_today_session_test.dart:11:50 • invalid_use_of_type_outside_library
+warning • The type argument(s) of the constructor 'Right' can't be inferred • test/features/programs/domain/usecases/watch_today_session_test.dart:34:26 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Left' can't be inferred • test/features/programs/domain/usecases/watch_today_session_test.dart:47:26 • inference_failure_on_instance_creation
+  error • The class 'WorkoutSession' can't be implemented outside of its library because it's a final class • test/features/programs/domain/usecases/watch_upcoming_sessions_test.dart:11:50 • invalid_use_of_type_outside_library
+warning • The type argument(s) of the constructor 'Right' can't be inferred • test/features/programs/domain/usecases/watch_upcoming_sessions_test.dart:39:26 • inference_failure_on_instance_creation
+warning • The type argument(s) of the constructor 'Left' can't be inferred • test/features/programs/domain/usecases/watch_upcoming_sessions_test.dart:52:26 • inference_failure_on_instance_creation
+   info • Sort directive sections alphabetically • test/features/programs/presentation/bloc/builder/program_builder_bloc_test.dart:13:1 • directives_ordering
+warning • The type argument(s) of the constructor 'Future.delayed' can't be inferred • test/features/programs/presentation/bloc/builder/program_builder_bloc_test.dart:138:15 • inference_failure_on_instance_creation
+warning • Unused import: 'package:ascent/features/programs/domain/entities/workout_session.dart' • test/features/programs/presentation/bloc/today/client_today_bloc_test.dart:2:8 • unused_import
+   info • Sort directive sections alphabetically • test/features/programs/presentation/bloc/today/client_today_bloc_test.dart:9:1 • directives_ordering
+   info • Sort directive sections alphabetically • test/features/programs/presentation/bloc/workout/workout_logging_bloc_test.dart:11:1 • directives_ordering
+  error • The class 'WorkoutLoggingEvent' can't be extended, implemented, or mixed in outside of its library because it's a sealed class • test/features/programs/presentation/pages/active_workout_page_test.dart:17:55 • invalid_use_of_type_outside_library
+  error • The class 'ClientTodayEvent' can't be extended, implemented, or mixed in outside of its library because it's a sealed class • test/features/programs/presentation/pages/client_today_page_test.dart:17:52 • invalid_use_of_type_outside_library
+  error • The class 'ProgramBuilderEvent' can't be extended, implemented, or mixed in outside of its library because it's a sealed class • test/features/programs/presentation/pages/program_builder_page_test.dart:17:55 • invalid_use_of_type_outside_library
+
+131 issues found. (ran in 1.6s)

@@ -1,0 +1,30 @@
+import 'package:ascent/core/error/failures.dart';
+import 'package:ascent/core/usecases/usecase.dart';
+import 'package:ascent/features/programs/domain/repositories/programs_repository.dart';
+import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
+
+class DuplicateWeekParams {
+  final String blockId;
+  final DateTime sourceWeekStart;
+  final DateTime targetWeekStart;
+  const DuplicateWeekParams({
+    required this.blockId,
+    required this.sourceWeekStart,
+    required this.targetWeekStart,
+  });
+}
+
+@injectable
+class DuplicateWeek extends UseCase<Unit, DuplicateWeekParams> {
+  DuplicateWeek(this._repository);
+  final ProgramsRepository _repository;
+  @override
+  Future<Either<Failure, Unit>> call(DuplicateWeekParams params) {
+    return _repository.duplicateWeek(
+      params.blockId,
+      params.sourceWeekStart,
+      params.targetWeekStart,
+    );
+  }
+}
