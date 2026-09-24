@@ -1,13 +1,13 @@
-import 'package:ascent/core/error/failures.dart';
-import 'package:ascent/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:ascent/features/auth/presentation/bloc/auth_state.dart';
-import 'package:ascent/features/progressions/domain/entities/progression.dart';
-import 'package:ascent/features/progressions/domain/usecases/watch_coach_progressions.dart';
+import 'package:ironlink/core/error/failures.dart';
+import 'package:ironlink/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:ironlink/features/auth/presentation/bloc/auth_state.dart';
+import 'package:ironlink/features/progressions/domain/entities/progression.dart';
+import 'package:ironlink/features/progressions/domain/usecases/watch_coach_progressions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
-import 'package:ascent/features/progressions/presentation/bloc/list/progressions_list_event.dart';
-import 'package:ascent/features/progressions/presentation/bloc/list/progressions_list_state.dart';
+import 'package:ironlink/features/progressions/presentation/bloc/list/progressions_list_event.dart';
+import 'package:ironlink/features/progressions/presentation/bloc/list/progressions_list_state.dart';
 
 @injectable
 class ProgressionsListBloc

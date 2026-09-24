@@ -1,5 +1,5 @@
-import 'package:ascent/core/error/exceptions.dart';
-import 'package:ascent/features/messaging/data/models/message_model.dart';
+import 'package:ironlink/core/error/exceptions.dart';
+import 'package:ironlink/features/messaging/data/models/message_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 

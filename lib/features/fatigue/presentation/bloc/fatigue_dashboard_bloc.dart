@@ -1,7 +1,7 @@
-import 'package:ascent/core/error/failures.dart';
-import 'package:ascent/features/fatigue/domain/usecases/watch_client_fatigue_data.dart';
-import 'package:ascent/features/fatigue/presentation/bloc/fatigue_dashboard_event.dart';
-import 'package:ascent/features/fatigue/presentation/bloc/fatigue_dashboard_state.dart';
+import 'package:ironlink/core/error/failures.dart';
+import 'package:ironlink/features/fatigue/domain/usecases/watch_client_fatigue_data.dart';
+import 'package:ironlink/features/fatigue/presentation/bloc/fatigue_dashboard_event.dart';
+import 'package:ironlink/features/fatigue/presentation/bloc/fatigue_dashboard_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 

@@ -1,4 +1,4 @@
-import 'package:ascent/features/auth/domain/entities/user_role.dart';
+import 'package:ironlink/features/auth/domain/entities/user_role.dart';
 
 /// Authenticated user in the domain layer.
 ///

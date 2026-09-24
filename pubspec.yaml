@@ -1,4 +1,4 @@
-name: ascent
+name: ironlink
 description: "Ascent — coach dashboard (web) + client app (mobile) from one shared Flutter codebase."
 publish_to: 'none'
 

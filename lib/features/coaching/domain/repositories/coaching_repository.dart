@@ -1,5 +1,5 @@
-import 'package:ascent/core/error/failures.dart';
-import 'package:ascent/features/coaching/domain/entities/client_summary.dart';
+import 'package:ironlink/core/error/failures.dart';
+import 'package:ironlink/features/coaching/domain/entities/client_summary.dart';
 import 'package:fpdart/fpdart.dart';
 
 abstract class CoachingRepository {

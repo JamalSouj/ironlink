@@ -1,10 +1,10 @@
-import 'package:ascent/core/error/exceptions.dart';
-import 'package:ascent/core/error/failures.dart';
-import 'package:ascent/features/progressions/data/datasources/remote/supabase_progressions_data_source.dart';
-import 'package:ascent/features/progressions/domain/entities/client_progression_status.dart';
-import 'package:ascent/features/progressions/domain/entities/progression.dart';
-import 'package:ascent/features/progressions/domain/entities/progression_level.dart';
-import 'package:ascent/features/progressions/domain/repositories/progressions_repository.dart';
+import 'package:ironlink/core/error/exceptions.dart';
+import 'package:ironlink/core/error/failures.dart';
+import 'package:ironlink/features/progressions/data/datasources/remote/supabase_progressions_data_source.dart';
+import 'package:ironlink/features/progressions/domain/entities/client_progression_status.dart';
+import 'package:ironlink/features/progressions/domain/entities/progression.dart';
+import 'package:ironlink/features/progressions/domain/entities/progression_level.dart';
+import 'package:ironlink/features/progressions/domain/repositories/progressions_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 

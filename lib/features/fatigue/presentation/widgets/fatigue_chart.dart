@@ -1,4 +1,4 @@
-import 'package:ascent/features/fatigue/domain/entities/training_load_point.dart';
+import 'package:ironlink/features/fatigue/domain/entities/training_load_point.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 

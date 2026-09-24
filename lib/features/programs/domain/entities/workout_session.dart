@@ -1,4 +1,4 @@
-import 'package:ascent/features/programs/domain/entities/set_log.dart';
+import 'package:ironlink/features/programs/domain/entities/set_log.dart';
 
 final class WorkoutSession {
   const WorkoutSession({

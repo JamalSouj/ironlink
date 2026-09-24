@@ -1,4 +1,4 @@
-import 'package:ascent/features/auth/domain/entities/auth_user.dart';
+import 'package:ironlink/features/auth/domain/entities/auth_user.dart';
 
 class ClientSummary {
   const ClientSummary({

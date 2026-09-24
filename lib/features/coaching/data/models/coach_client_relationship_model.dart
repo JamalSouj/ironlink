@@ -1,4 +1,4 @@
-import 'package:ascent/features/coaching/domain/entities/coach_client_relationship.dart';
+import 'package:ironlink/features/coaching/domain/entities/coach_client_relationship.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'coach_client_relationship_model.freezed.dart';

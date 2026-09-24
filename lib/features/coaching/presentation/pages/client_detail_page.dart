@@ -1,7 +1,7 @@
-import 'package:ascent/core/di/injection.dart';
-import 'package:ascent/features/coaching/domain/entities/client_summary.dart';
-import 'package:ascent/features/progressions/domain/usecases/override_client_progression_level.dart';
-import 'package:ascent/features/progressions/domain/usecases/watch_client_progressions.dart';
+import 'package:ironlink/core/di/injection.dart';
+import 'package:ironlink/features/coaching/domain/entities/client_summary.dart';
+import 'package:ironlink/features/progressions/domain/usecases/override_client_progression_level.dart';
+import 'package:ironlink/features/progressions/domain/usecases/watch_client_progressions.dart';
 import 'package:flutter/material.dart';
 
 class ClientDetailPage extends StatelessWidget {

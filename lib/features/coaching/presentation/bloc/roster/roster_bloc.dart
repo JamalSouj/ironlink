@@ -1,13 +1,13 @@
-import 'package:ascent/core/error/failures.dart';
-import 'package:ascent/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:ascent/features/auth/presentation/bloc/auth_state.dart';
-import 'package:ascent/features/coaching/domain/entities/client_summary.dart';
-import 'package:ascent/features/coaching/domain/usecases/watch_my_clients.dart';
+import 'package:ironlink/core/error/failures.dart';
+import 'package:ironlink/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:ironlink/features/auth/presentation/bloc/auth_state.dart';
+import 'package:ironlink/features/coaching/domain/entities/client_summary.dart';
+import 'package:ironlink/features/coaching/domain/usecases/watch_my_clients.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
-import 'package:ascent/features/coaching/presentation/bloc/roster/roster_event.dart';
-import 'package:ascent/features/coaching/presentation/bloc/roster/roster_state.dart';
+import 'package:ironlink/features/coaching/presentation/bloc/roster/roster_event.dart';
+import 'package:ironlink/features/coaching/presentation/bloc/roster/roster_state.dart';
 
 @injectable
 class RosterBloc extends Bloc<RosterEvent, RosterState> {

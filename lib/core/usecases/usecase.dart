@@ -1,4 +1,4 @@
-import 'package:ascent/core/error/failures.dart';
+import 'package:ironlink/core/error/failures.dart';
 import 'package:fpdart/fpdart.dart';
 
 /// Base contract for all use cases in the domain layer.

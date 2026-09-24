@@ -1,5 +1,5 @@
-import 'package:ascent/features/auth/data/models/auth_user_model.dart';
-import 'package:ascent/features/coaching/domain/entities/client_summary.dart';
+import 'package:ironlink/features/auth/data/models/auth_user_model.dart';
+import 'package:ironlink/features/coaching/domain/entities/client_summary.dart';
 
 class ClientSummaryModel {
   const ClientSummaryModel._();

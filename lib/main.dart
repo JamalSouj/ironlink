@@ -1,12 +1,12 @@
 /// Default entry point — mirrors coach entry for `flutter run` with no -t flag.
 library;
 
-import 'package:ascent/core/di/injection.dart';
-import 'package:ascent/core/routing/app_router.dart';
-import 'package:ascent/core/theme/app_theme.dart';
-import 'package:ascent/core/utils/constants.dart';
-import 'package:ascent/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:ascent/features/auth/presentation/bloc/auth_event.dart';
+import 'package:ironlink/core/di/injection.dart';
+import 'package:ironlink/core/routing/app_router.dart';
+import 'package:ironlink/core/theme/app_theme.dart';
+import 'package:ironlink/core/utils/constants.dart';
+import 'package:ironlink/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:ironlink/features/auth/presentation/bloc/auth_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';

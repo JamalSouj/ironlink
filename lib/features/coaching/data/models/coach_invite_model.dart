@@ -1,4 +1,4 @@
-import 'package:ascent/features/coaching/domain/entities/coach_invite.dart';
+import 'package:ironlink/features/coaching/domain/entities/coach_invite.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'coach_invite_model.freezed.dart';

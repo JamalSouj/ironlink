@@ -1,8 +1,8 @@
-import 'package:ascent/core/error/exceptions.dart';
-import 'package:ascent/core/error/failures.dart';
-import 'package:ascent/features/fatigue/data/datasources/remote/supabase_fatigue_data_source.dart';
-import 'package:ascent/features/fatigue/domain/entities/training_load_point.dart';
-import 'package:ascent/features/fatigue/domain/repositories/fatigue_repository.dart';
+import 'package:ironlink/core/error/exceptions.dart';
+import 'package:ironlink/core/error/failures.dart';
+import 'package:ironlink/features/fatigue/data/datasources/remote/supabase_fatigue_data_source.dart';
+import 'package:ironlink/features/fatigue/domain/entities/training_load_point.dart';
+import 'package:ironlink/features/fatigue/domain/repositories/fatigue_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 

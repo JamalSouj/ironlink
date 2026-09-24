@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:ascent/features/readiness/data/models/readiness_log_model.dart';
+import 'package:ironlink/features/readiness/data/models/readiness_log_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 

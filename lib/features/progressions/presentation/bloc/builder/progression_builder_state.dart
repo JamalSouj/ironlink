@@ -1,5 +1,5 @@
-import 'package:ascent/core/error/failures.dart';
-import 'package:ascent/features/progressions/domain/entities/progression_level.dart';
+import 'package:ironlink/core/error/failures.dart';
+import 'package:ironlink/features/progressions/domain/entities/progression_level.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'progression_builder_state.freezed.dart';

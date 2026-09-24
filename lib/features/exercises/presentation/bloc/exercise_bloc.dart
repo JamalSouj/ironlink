@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ascent/features/exercises/domain/entities/exercise.dart';
-import 'package:ascent/features/exercises/domain/usecases/get_exercises.dart';
+import 'package:ironlink/features/exercises/domain/entities/exercise.dart';
+import 'package:ironlink/features/exercises/domain/usecases/get_exercises.dart';
 
 abstract class ExerciseEvent {}
 

@@ -1,7 +1,7 @@
-import 'package:ascent/core/di/injection.dart';
-import 'package:ascent/features/messaging/presentation/bloc/chat/chat_thread_bloc.dart';
-import 'package:ascent/features/messaging/presentation/bloc/chat/chat_thread_event.dart';
-import 'package:ascent/features/messaging/presentation/bloc/chat/chat_thread_state.dart';
+import 'package:ironlink/core/di/injection.dart';
+import 'package:ironlink/features/messaging/presentation/bloc/chat/chat_thread_bloc.dart';
+import 'package:ironlink/features/messaging/presentation/bloc/chat/chat_thread_event.dart';
+import 'package:ironlink/features/messaging/presentation/bloc/chat/chat_thread_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';

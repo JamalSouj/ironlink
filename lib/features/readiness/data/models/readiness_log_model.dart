@@ -1,4 +1,4 @@
-import 'package:ascent/features/readiness/domain/entities/readiness_log.dart';
+import 'package:ironlink/features/readiness/domain/entities/readiness_log.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'readiness_log_model.freezed.dart';

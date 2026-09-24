@@ -1,8 +1,8 @@
-import 'package:ascent/core/error/exceptions.dart';
-import 'package:ascent/core/error/failures.dart';
-import 'package:ascent/features/billing/data/datasources/remote/supabase_billing_data_source.dart';
-import 'package:ascent/features/billing/domain/entities/subscription.dart';
-import 'package:ascent/features/billing/domain/repositories/billing_repository.dart';
+import 'package:ironlink/core/error/exceptions.dart';
+import 'package:ironlink/core/error/failures.dart';
+import 'package:ironlink/features/billing/data/datasources/remote/supabase_billing_data_source.dart';
+import 'package:ironlink/features/billing/domain/entities/subscription.dart';
+import 'package:ironlink/features/billing/domain/repositories/billing_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 

@@ -1,8 +1,8 @@
-import 'package:ascent/core/di/injection.dart';
-import 'package:ascent/features/fatigue/presentation/bloc/fatigue_dashboard_bloc.dart';
-import 'package:ascent/features/fatigue/presentation/bloc/fatigue_dashboard_event.dart';
-import 'package:ascent/features/fatigue/presentation/bloc/fatigue_dashboard_state.dart';
-import 'package:ascent/features/fatigue/presentation/widgets/fatigue_chart.dart';
+import 'package:ironlink/core/di/injection.dart';
+import 'package:ironlink/features/fatigue/presentation/bloc/fatigue_dashboard_bloc.dart';
+import 'package:ironlink/features/fatigue/presentation/bloc/fatigue_dashboard_event.dart';
+import 'package:ironlink/features/fatigue/presentation/bloc/fatigue_dashboard_state.dart';
+import 'package:ironlink/features/fatigue/presentation/widgets/fatigue_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

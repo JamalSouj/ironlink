@@ -1,11 +1,11 @@
-import 'package:ascent/features/programs/domain/usecases/add_program_block.dart';
-import 'package:ascent/features/programs/domain/usecases/duplicate_week.dart';
-import 'package:ascent/features/programs/domain/usecases/schedule_workout_session.dart';
-import 'package:ascent/features/programs/domain/usecases/watch_program_blocks.dart';
-import 'package:ascent/features/programs/presentation/bloc/builder/program_builder_event.dart';
-import 'package:ascent/features/programs/presentation/bloc/builder/program_builder_state.dart';
+import 'package:ironlink/features/programs/domain/usecases/add_program_block.dart';
+import 'package:ironlink/features/programs/domain/usecases/duplicate_week.dart';
+import 'package:ironlink/features/programs/domain/usecases/schedule_workout_session.dart';
+import 'package:ironlink/features/programs/domain/usecases/watch_program_blocks.dart';
+import 'package:ironlink/features/programs/presentation/bloc/builder/program_builder_event.dart';
+import 'package:ironlink/features/programs/presentation/bloc/builder/program_builder_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ascent/core/error/failures.dart';
+import 'package:ironlink/core/error/failures.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable

@@ -1,4 +1,4 @@
-import 'package:ascent/features/exercises/domain/entities/exercise.dart';
+import 'package:ironlink/features/exercises/domain/entities/exercise.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'exercise_model.freezed.dart';

@@ -1,4 +1,4 @@
-import 'package:ascent/features/progressions/domain/entities/client_progression_status.dart';
+import 'package:ironlink/features/progressions/domain/entities/client_progression_status.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'client_progression_status_model.freezed.dart';

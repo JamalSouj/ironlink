@@ -1,7 +1,7 @@
-import 'package:ascent/core/error/exceptions.dart';
-import 'package:ascent/features/progressions/data/models/client_progression_status_model.dart';
-import 'package:ascent/features/progressions/data/models/progression_level_model.dart';
-import 'package:ascent/features/progressions/data/models/progression_model.dart';
+import 'package:ironlink/core/error/exceptions.dart';
+import 'package:ironlink/features/progressions/data/models/client_progression_status_model.dart';
+import 'package:ironlink/features/progressions/data/models/progression_level_model.dart';
+import 'package:ironlink/features/progressions/data/models/progression_model.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 import 'package:uuid/uuid.dart';

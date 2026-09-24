@@ -1,5 +1,5 @@
-import 'package:ascent/core/error/failures.dart';
-import 'package:ascent/features/messaging/domain/entities/message_entity.dart';
+import 'package:ironlink/core/error/failures.dart';
+import 'package:ironlink/features/messaging/domain/entities/message_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'chat_thread_state.freezed.dart';

@@ -1,8 +1,8 @@
-import 'package:ascent/core/error/failures.dart';
-import 'package:ascent/features/programs/domain/entities/program.dart';
-import 'package:ascent/features/programs/domain/entities/program_block.dart';
-import 'package:ascent/features/programs/domain/entities/set_log.dart';
-import 'package:ascent/features/programs/domain/entities/workout_session.dart';
+import 'package:ironlink/core/error/failures.dart';
+import 'package:ironlink/features/programs/domain/entities/program.dart';
+import 'package:ironlink/features/programs/domain/entities/program_block.dart';
+import 'package:ironlink/features/programs/domain/entities/set_log.dart';
+import 'package:ironlink/features/programs/domain/entities/workout_session.dart';
 import 'package:fpdart/fpdart.dart';
 
 abstract class ProgramsRepository {

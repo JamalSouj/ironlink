@@ -1,5 +1,5 @@
-import 'package:ascent/features/auth/domain/entities/auth_user.dart';
-import 'package:ascent/features/auth/domain/entities/user_role.dart';
+import 'package:ironlink/features/auth/domain/entities/auth_user.dart';
+import 'package:ironlink/features/auth/domain/entities/user_role.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'auth_user_model.freezed.dart';

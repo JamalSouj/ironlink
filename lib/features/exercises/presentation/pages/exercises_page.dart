@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ascent/features/exercises/presentation/bloc/exercise_bloc.dart';
+import 'package:ironlink/features/exercises/presentation/bloc/exercise_bloc.dart';
 
 class ExercisesPage extends StatelessWidget {
   const ExercisesPage({super.key});

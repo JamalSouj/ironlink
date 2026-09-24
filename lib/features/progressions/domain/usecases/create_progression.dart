@@ -1,7 +1,7 @@
-import 'package:ascent/core/error/failures.dart';
-import 'package:ascent/core/usecases/usecase.dart';
-import 'package:ascent/features/progressions/domain/entities/progression.dart';
-import 'package:ascent/features/progressions/domain/repositories/progressions_repository.dart';
+import 'package:ironlink/core/error/failures.dart';
+import 'package:ironlink/core/usecases/usecase.dart';
+import 'package:ironlink/features/progressions/domain/entities/progression.dart';
+import 'package:ironlink/features/progressions/domain/repositories/progressions_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 

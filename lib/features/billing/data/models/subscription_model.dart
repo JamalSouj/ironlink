@@ -1,4 +1,4 @@
-import 'package:ascent/features/billing/domain/entities/subscription.dart';
+import 'package:ironlink/features/billing/domain/entities/subscription.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'subscription_model.freezed.dart';

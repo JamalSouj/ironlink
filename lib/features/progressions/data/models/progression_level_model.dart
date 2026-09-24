@@ -1,4 +1,4 @@
-import 'package:ascent/features/progressions/domain/entities/progression_level.dart';
+import 'package:ironlink/features/progressions/domain/entities/progression_level.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'progression_level_model.freezed.dart';

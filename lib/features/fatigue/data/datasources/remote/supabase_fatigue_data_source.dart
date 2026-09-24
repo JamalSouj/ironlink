@@ -1,5 +1,5 @@
-import 'package:ascent/core/error/exceptions.dart';
-import 'package:ascent/features/fatigue/domain/entities/training_load_point.dart';
+import 'package:ironlink/core/error/exceptions.dart';
+import 'package:ironlink/features/fatigue/domain/entities/training_load_point.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 import 'package:rxdart/rxdart.dart';

@@ -1,7 +1,7 @@
-import 'package:ascent/core/error/failures.dart';
-import 'package:ascent/features/progressions/domain/entities/client_progression_status.dart';
-import 'package:ascent/features/progressions/domain/entities/progression.dart';
-import 'package:ascent/features/progressions/domain/entities/progression_level.dart';
+import 'package:ironlink/core/error/failures.dart';
+import 'package:ironlink/features/progressions/domain/entities/client_progression_status.dart';
+import 'package:ironlink/features/progressions/domain/entities/progression.dart';
+import 'package:ironlink/features/progressions/domain/entities/progression_level.dart';
 import 'package:fpdart/fpdart.dart';
 
 abstract class ProgressionsRepository {

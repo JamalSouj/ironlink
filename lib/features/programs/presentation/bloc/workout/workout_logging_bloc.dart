@@ -1,11 +1,11 @@
-import 'package:ascent/features/programs/domain/usecases/complete_session.dart';
-import 'package:ascent/features/programs/domain/usecases/log_set.dart';
-import 'package:ascent/features/programs/presentation/bloc/workout/workout_logging_event.dart';
-import 'package:ascent/features/programs/presentation/bloc/workout/workout_logging_state.dart';
+import 'package:ironlink/features/programs/domain/usecases/complete_session.dart';
+import 'package:ironlink/features/programs/domain/usecases/log_set.dart';
+import 'package:ironlink/features/programs/presentation/bloc/workout/workout_logging_event.dart';
+import 'package:ironlink/features/programs/presentation/bloc/workout/workout_logging_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import 'package:ascent/features/progressions/domain/usecases/evaluate_progression_unlock.dart';
+import 'package:ironlink/features/progressions/domain/usecases/evaluate_progression_unlock.dart';
 
 @injectable
 class WorkoutLoggingBloc extends Bloc<WorkoutLoggingEvent, WorkoutLoggingState> {

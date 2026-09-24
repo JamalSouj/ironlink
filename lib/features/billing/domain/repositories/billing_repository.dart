@@ -1,5 +1,5 @@
-import 'package:ascent/core/error/failures.dart';
-import 'package:ascent/features/billing/domain/entities/subscription.dart';
+import 'package:ironlink/core/error/failures.dart';
+import 'package:ironlink/features/billing/domain/entities/subscription.dart';
 import 'package:fpdart/fpdart.dart';
 
 abstract class BillingRepository {

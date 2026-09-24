@@ -1,11 +1,11 @@
-import 'package:ascent/core/error/failures.dart';
-import 'package:ascent/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:ascent/features/auth/presentation/bloc/auth_state.dart';
-import 'package:ascent/features/coaching/domain/usecases/generate_invite_code.dart';
+import 'package:ironlink/core/error/failures.dart';
+import 'package:ironlink/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:ironlink/features/auth/presentation/bloc/auth_state.dart';
+import 'package:ironlink/features/coaching/domain/usecases/generate_invite_code.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:ascent/features/coaching/presentation/bloc/invite/invite_event.dart';
-import 'package:ascent/features/coaching/presentation/bloc/invite/invite_state.dart';
+import 'package:ironlink/features/coaching/presentation/bloc/invite/invite_event.dart';
+import 'package:ironlink/features/coaching/presentation/bloc/invite/invite_state.dart';
 
 @injectable
 class InviteBloc extends Bloc<InviteEvent, InviteState> {

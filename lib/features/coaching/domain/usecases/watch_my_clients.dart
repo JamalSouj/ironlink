@@ -1,7 +1,7 @@
-import 'package:ascent/core/error/failures.dart';
-import 'package:ascent/core/usecases/usecase.dart';
-import 'package:ascent/features/coaching/domain/entities/client_summary.dart';
-import 'package:ascent/features/coaching/domain/repositories/coaching_repository.dart';
+import 'package:ironlink/core/error/failures.dart';
+import 'package:ironlink/core/usecases/usecase.dart';
+import 'package:ironlink/features/coaching/domain/entities/client_summary.dart';
+import 'package:ironlink/features/coaching/domain/repositories/coaching_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 

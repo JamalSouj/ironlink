@@ -1,4 +1,4 @@
-# Ascent - Professional Coach & Client Fitness Platform
+# IronLink - Professional Coach & Client Fitness Platform
 
 ![Flutter Version](https://img.shields.io/badge/Flutter-3.38.9-02569B?logo=flutter)
 ![Dart Version](https://img.shields.io/badge/Dart-3.10.8-0175C2?logo=dart)
@@ -8,7 +8,7 @@
 ![Payments](https://img.shields.io/badge/Payments-Stripe-6772E5?logo=stripe)
 ![License](https://img.shields.io/badge/License-MIT-purple)
 
-Ascent is a robust, production-ready Flutter application designed for fitness coaches and their clients. It features comprehensive program management, real-time messaging, client readiness tracking, and integrated Stripe billing.
+IronLink is a robust, production-ready Flutter application designed for fitness coaches and their clients. It features comprehensive program management, real-time messaging, client readiness tracking, and integrated Stripe billing.
 
 ## ✨ Features
 

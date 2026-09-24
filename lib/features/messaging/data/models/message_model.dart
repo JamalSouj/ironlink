@@ -1,4 +1,4 @@
-import 'package:ascent/features/messaging/domain/entities/message_entity.dart';
+import 'package:ironlink/features/messaging/domain/entities/message_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'message_model.freezed.dart';

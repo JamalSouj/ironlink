@@ -1,9 +1,9 @@
-import 'package:ascent/core/di/injection.dart';
-import 'package:ascent/features/programs/domain/entities/set_log.dart';
-import 'package:ascent/features/programs/domain/entities/workout_session.dart';
-import 'package:ascent/features/programs/presentation/bloc/workout/workout_logging_bloc.dart';
-import 'package:ascent/features/programs/presentation/bloc/workout/workout_logging_event.dart';
-import 'package:ascent/features/programs/presentation/bloc/workout/workout_logging_state.dart';
+import 'package:ironlink/core/di/injection.dart';
+import 'package:ironlink/features/programs/domain/entities/set_log.dart';
+import 'package:ironlink/features/programs/domain/entities/workout_session.dart';
+import 'package:ironlink/features/programs/presentation/bloc/workout/workout_logging_bloc.dart';
+import 'package:ironlink/features/programs/presentation/bloc/workout/workout_logging_event.dart';
+import 'package:ironlink/features/programs/presentation/bloc/workout/workout_logging_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
