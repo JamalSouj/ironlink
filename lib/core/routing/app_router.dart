@@ -9,6 +9,7 @@ import 'package:ironlink/features/auth/presentation/pages/login_page.dart';
 import 'package:ironlink/features/billing/presentation/pages/billing_page.dart';
 import 'package:ironlink/features/coaching/presentation/pages/client_shell_page.dart';
 import 'package:ironlink/features/coaching/presentation/pages/coach_shell_page.dart';
+import 'package:ironlink/features/coaching/presentation/pages/roster_page.dart';
 import 'package:ironlink/features/messaging/presentation/pages/conversations_list_page.dart';
 import 'package:ironlink/features/programs/presentation/pages/client_today_page.dart';
 import 'package:ironlink/features/progressions/presentation/pages/client_progressions_page.dart';
@@ -104,11 +105,7 @@ class AppRouter {
         GoRoute(
           path: '/coach/clients',
           name: 'coach-clients',
-          builder: (context, _) => const _PlaceholderPage( // Replace with CoachClientsPage later
-            icon: Icons.people,
-            label: 'Clients List',
-            subtitle: 'Clients list feature goes here.',
-          ),
+          builder: (context, _) => const RosterPage(),
         ),
         GoRoute(
           path: '/coach/messages',
