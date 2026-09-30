@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ironlink/core/routing/router_notifier.dart';
 import 'package:ironlink/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ironlink/features/auth/presentation/bloc/auth_state.dart';
@@ -10,8 +12,6 @@ import 'package:ironlink/features/coaching/presentation/pages/coach_shell_page.d
 import 'package:ironlink/features/messaging/presentation/pages/conversations_list_page.dart';
 import 'package:ironlink/features/programs/presentation/pages/client_today_page.dart';
 import 'package:ironlink/features/progressions/presentation/pages/client_progressions_page.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 /// Central router configuration.
 ///

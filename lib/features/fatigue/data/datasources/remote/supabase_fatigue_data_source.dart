@@ -1,8 +1,7 @@
-import 'package:ironlink/core/error/exceptions.dart';
-import 'package:ironlink/features/fatigue/domain/entities/training_load_point.dart';
 import 'package:injectable/injectable.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' as sb;
+import 'package:ironlink/features/fatigue/domain/entities/training_load_point.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 
 @lazySingleton
 class SupabaseFatigueDataSource {
@@ -31,13 +30,13 @@ class SupabaseFatigueDataSource {
 
       for (final r in readiness) {
         final date = r['log_date'] as String;
-        dateMap[date] = {'readiness': r, 'sessions': []};
+        dateMap[date] = {'readiness': r, 'sessions': <Map<String, dynamic>>[]};
       }
 
       for (final s in sessions) {
         final date = s['scheduled_date'] as String;
         if (!dateMap.containsKey(date)) {
-          dateMap[date] = {'readiness': null, 'sessions': []};
+          dateMap[date] = {'readiness': null, 'sessions': <Map<String, dynamic>>[]};
         }
         (dateMap[date]!['sessions'] as List).add(s);
       }

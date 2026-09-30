@@ -1,6 +1,6 @@
+import 'package:fpdart/fpdart.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/features/coaching/domain/entities/client_summary.dart';
-import 'package:fpdart/fpdart.dart';
 
 abstract class CoachingRepository {
   /// Returns a real-time stream of the coach's active clients.

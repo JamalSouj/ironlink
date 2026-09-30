@@ -1,6 +1,6 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/features/progressions/domain/entities/progression.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'progressions_list_state.freezed.dart';
 

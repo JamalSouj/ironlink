@@ -1,10 +1,10 @@
+import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/core/error/exceptions.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/features/coaching/data/datasources/remote/supabase_coaching_data_source.dart';
 import 'package:ironlink/features/coaching/domain/entities/client_summary.dart';
 import 'package:ironlink/features/coaching/domain/repositories/coaching_repository.dart';
-import 'package:fpdart/fpdart.dart';
-import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: CoachingRepository)
 class CoachingRepositoryImpl implements CoachingRepository {

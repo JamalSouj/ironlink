@@ -1,3 +1,5 @@
+import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/core/error/exceptions.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/features/progressions/data/datasources/remote/supabase_progressions_data_source.dart';
@@ -5,8 +7,6 @@ import 'package:ironlink/features/progressions/domain/entities/client_progressio
 import 'package:ironlink/features/progressions/domain/entities/progression.dart';
 import 'package:ironlink/features/progressions/domain/entities/progression_level.dart';
 import 'package:ironlink/features/progressions/domain/repositories/progressions_repository.dart';
-import 'package:fpdart/fpdart.dart';
-import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: ProgressionsRepository)
 class ProgressionsRepositoryImpl implements ProgressionsRepository {
@@ -26,10 +26,11 @@ class ProgressionsRepositoryImpl implements ProgressionsRepository {
           );
         })
         .handleError((Object error) {
-          if (error is ServerException)
+          if (error is ServerException) {
             return left<Failure, List<Progression>>(
               ServerFailure(message: error.message),
             );
+          }
           return left<Failure, List<Progression>>(
             ServerFailure(message: error.toString()),
           );
@@ -48,10 +49,11 @@ class ProgressionsRepositoryImpl implements ProgressionsRepository {
           );
         })
         .handleError((Object error) {
-          if (error is ServerException)
+          if (error is ServerException) {
             return left<Failure, List<ProgressionLevel>>(
               ServerFailure(message: error.message),
             );
+          }
           return left<Failure, List<ProgressionLevel>>(
             ServerFailure(message: error.toString()),
           );
@@ -120,10 +122,11 @@ class ProgressionsRepositoryImpl implements ProgressionsRepository {
           );
         })
         .handleError((Object error) {
-          if (error is ServerException)
+          if (error is ServerException) {
             return left<Failure, List<ClientProgressionStatus>>(
               ServerFailure(message: error.message),
             );
+          }
           return left<Failure, List<ClientProgressionStatus>>(
             ServerFailure(message: error.toString()),
           );

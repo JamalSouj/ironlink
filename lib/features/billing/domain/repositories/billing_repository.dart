@@ -1,6 +1,6 @@
+import 'package:fpdart/fpdart.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/features/billing/domain/entities/subscription.dart';
-import 'package:fpdart/fpdart.dart';
 
 abstract class BillingRepository {
   Future<Either<Failure, String>> createCheckoutSession(String priceId, String redirectUrl);

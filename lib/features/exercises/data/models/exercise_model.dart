@@ -1,5 +1,5 @@
-import 'package:ironlink/features/exercises/domain/entities/exercise.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ironlink/features/exercises/domain/entities/exercise.dart';
 
 part 'exercise_model.freezed.dart';
 part 'exercise_model.g.dart';

@@ -1,10 +1,10 @@
+import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/core/error/exceptions.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/features/messaging/data/datasources/remote/supabase_messaging_data_source.dart';
 import 'package:ironlink/features/messaging/domain/entities/message_entity.dart';
 import 'package:ironlink/features/messaging/domain/repositories/messaging_repository.dart';
-import 'package:fpdart/fpdart.dart';
-import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: MessagingRepository)
 class MessagingRepositoryImpl implements MessagingRepository {

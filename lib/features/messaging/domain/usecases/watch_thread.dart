@@ -1,9 +1,9 @@
+import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/core/usecases/usecase.dart';
 import 'package:ironlink/features/messaging/domain/entities/message_entity.dart';
 import 'package:ironlink/features/messaging/domain/repositories/messaging_repository.dart';
-import 'package:fpdart/fpdart.dart';
-import 'package:injectable/injectable.dart';
 
 class WatchThreadParams {
   final String currentUserId;

@@ -1,6 +1,6 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/features/billing/domain/entities/subscription.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'billing_state.freezed.dart';
 

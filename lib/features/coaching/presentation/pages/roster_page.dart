@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ironlink/core/di/injection.dart';
 import 'package:ironlink/features/coaching/presentation/bloc/invite/invite_bloc.dart';
 import 'package:ironlink/features/coaching/presentation/bloc/invite/invite_event.dart';
@@ -5,9 +8,6 @@ import 'package:ironlink/features/coaching/presentation/bloc/invite/invite_state
 import 'package:ironlink/features/coaching/presentation/bloc/roster/roster_bloc.dart';
 import 'package:ironlink/features/coaching/presentation/bloc/roster/roster_event.dart';
 import 'package:ironlink/features/coaching/presentation/bloc/roster/roster_state.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RosterPage extends StatelessWidget {
   const RosterPage({super.key});

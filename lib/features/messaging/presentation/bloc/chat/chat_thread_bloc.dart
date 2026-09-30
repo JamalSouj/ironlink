@@ -1,3 +1,6 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/features/messaging/domain/entities/message_entity.dart';
 import 'package:ironlink/features/messaging/domain/usecases/mark_thread_as_read.dart';
@@ -5,9 +8,6 @@ import 'package:ironlink/features/messaging/domain/usecases/send_message.dart';
 import 'package:ironlink/features/messaging/domain/usecases/watch_thread.dart';
 import 'package:ironlink/features/messaging/presentation/bloc/chat/chat_thread_event.dart';
 import 'package:ironlink/features/messaging/presentation/bloc/chat/chat_thread_state.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fpdart/fpdart.dart';
-import 'package:injectable/injectable.dart';
 
 @injectable
 class ChatThreadBloc extends Bloc<ChatThreadEvent, ChatThreadState> {

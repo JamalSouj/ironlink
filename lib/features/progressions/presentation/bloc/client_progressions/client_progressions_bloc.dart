@@ -1,11 +1,11 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/features/progressions/domain/entities/client_progression_status.dart';
 import 'package:ironlink/features/progressions/domain/usecases/watch_client_progressions.dart';
 import 'package:ironlink/features/progressions/presentation/bloc/client_progressions/client_progressions_event.dart';
 import 'package:ironlink/features/progressions/presentation/bloc/client_progressions/client_progressions_state.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fpdart/fpdart.dart';
-import 'package:injectable/injectable.dart';
 
 @injectable
 class ClientProgressionsBloc

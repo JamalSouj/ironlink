@@ -1,9 +1,9 @@
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/core/error/exceptions.dart';
-import 'package:ironlink/features/programs/data/models/program_model.dart';
 import 'package:ironlink/features/programs/data/models/program_block_model.dart';
+import 'package:ironlink/features/programs/data/models/program_model.dart';
 import 'package:ironlink/features/programs/data/models/set_log_model.dart';
 import 'package:ironlink/features/programs/data/models/workout_session_model.dart';
-import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 import 'package:uuid/uuid.dart';
 
@@ -55,7 +55,7 @@ class SupabaseProgramsDataSource {
             'program_id': programId,
             'name': name,
             'block_order': blockOrder,
-            if (focus != null) 'focus': focus,
+            'focus': ?focus,
           })
           .select()
           .single();
@@ -107,12 +107,10 @@ class SupabaseProgramsDataSource {
             'workout_session_id': workoutSessionId,
             'exercise_id': exerciseId,
             'set_order': setOrder,
-            if (prescribedReps != null) 'prescribed_reps': prescribedReps,
-            if (prescribedLoadKg != null)
-              'prescribed_load_kg': prescribedLoadKg,
-            if (prescribedPct1Rm != null)
-              'prescribed_pct_1rm': prescribedPct1Rm,
-            if (tempo != null) 'tempo': tempo,
+            'prescribed_reps': ?prescribedReps,
+            'prescribed_load_kg': ?prescribedLoadKg,
+            'prescribed_pct_1rm': ?prescribedPct1Rm,
+            'tempo': ?tempo,
           })
           .select()
           .single();

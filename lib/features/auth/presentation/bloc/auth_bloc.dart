@@ -1,3 +1,6 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/core/usecases/usecase.dart';
 import 'package:ironlink/features/auth/domain/entities/auth_user.dart';
@@ -9,9 +12,6 @@ import 'package:ironlink/features/auth/domain/usecases/sign_up_coach.dart';
 import 'package:ironlink/features/auth/domain/usecases/watch_auth_state.dart';
 import 'package:ironlink/features/auth/presentation/bloc/auth_event.dart';
 import 'package:ironlink/features/auth/presentation/bloc/auth_state.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fpdart/fpdart.dart';
-import 'package:injectable/injectable.dart';
 
 /// Manages all authentication state for the app.
 ///

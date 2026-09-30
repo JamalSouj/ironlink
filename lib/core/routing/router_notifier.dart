@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:ironlink/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ironlink/features/auth/presentation/bloc/auth_state.dart';
-import 'package:flutter/foundation.dart';
 
 /// Adapts [AuthBloc]'s stream to [Listenable] for use as
 /// [GoRouter.refreshListenable].

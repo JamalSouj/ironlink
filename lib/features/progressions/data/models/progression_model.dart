@@ -1,5 +1,5 @@
-import 'package:ironlink/features/progressions/domain/entities/progression.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ironlink/features/progressions/domain/entities/progression.dart';
 
 part 'progression_model.freezed.dart';
 part 'progression_model.g.dart';

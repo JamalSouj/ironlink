@@ -1,6 +1,6 @@
-import 'package:ironlink/features/fatigue/domain/entities/training_load_point.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:ironlink/features/fatigue/domain/entities/training_load_point.dart';
 
 class FatigueChart extends StatelessWidget {
   const FatigueChart({super.key, required this.data});

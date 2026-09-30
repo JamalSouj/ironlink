@@ -1,9 +1,9 @@
+import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/core/usecases/usecase.dart';
 import 'package:ironlink/features/programs/domain/entities/program.dart';
 import 'package:ironlink/features/programs/domain/repositories/programs_repository.dart';
-import 'package:fpdart/fpdart.dart';
-import 'package:injectable/injectable.dart';
 
 @injectable
 class WatchClientPrograms extends StreamUseCase<List<Program>, String> {

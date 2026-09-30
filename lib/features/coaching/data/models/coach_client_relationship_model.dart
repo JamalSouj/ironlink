@@ -1,5 +1,5 @@
-import 'package:ironlink/features/coaching/domain/entities/coach_client_relationship.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ironlink/features/coaching/domain/entities/coach_client_relationship.dart';
 
 part 'coach_client_relationship_model.freezed.dart';
 part 'coach_client_relationship_model.g.dart';

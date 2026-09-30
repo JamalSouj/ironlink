@@ -1,9 +1,9 @@
+import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/core/usecases/usecase.dart';
 import 'package:ironlink/features/billing/domain/usecases/check_subscription_status.dart';
 import 'package:ironlink/features/coaching/domain/repositories/coaching_repository.dart';
-import 'package:fpdart/fpdart.dart';
-import 'package:injectable/injectable.dart';
 
 @injectable
 class GenerateInviteCode extends UseCase<String, String> {

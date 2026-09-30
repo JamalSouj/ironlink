@@ -1,5 +1,5 @@
-import 'package:ironlink/features/billing/domain/entities/subscription.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ironlink/features/billing/domain/entities/subscription.dart';
 
 part 'subscription_model.freezed.dart';
 part 'subscription_model.g.dart';

@@ -1,8 +1,8 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:ironlink/core/error/failures.dart';
+import 'package:ironlink/features/exercises/data/datasources/exercise_remote_datasource.dart';
 import 'package:ironlink/features/exercises/domain/entities/exercise.dart';
 import 'package:ironlink/features/exercises/domain/repositories/exercise_repository.dart';
-import 'package:ironlink/features/exercises/data/datasources/exercise_remote_datasource.dart';
 
 class ExerciseRepositoryImpl implements ExerciseRepository {
   final ExerciseRemoteDataSource remoteDataSource;

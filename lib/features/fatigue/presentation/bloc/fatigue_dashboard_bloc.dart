@@ -1,9 +1,9 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/features/fatigue/domain/usecases/watch_client_fatigue_data.dart';
 import 'package:ironlink/features/fatigue/presentation/bloc/fatigue_dashboard_event.dart';
 import 'package:ironlink/features/fatigue/presentation/bloc/fatigue_dashboard_state.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
 
 // The risk threshold standard is typically > 1.5 for the acute:chronic workload ratio.
 const _kAcwrRiskThreshold = 1.5;

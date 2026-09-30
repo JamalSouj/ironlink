@@ -1,5 +1,5 @@
-import 'package:ironlink/features/coaching/domain/entities/coach_invite.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ironlink/features/coaching/domain/entities/coach_invite.dart';
 
 part 'coach_invite_model.freezed.dart';
 part 'coach_invite_model.g.dart';

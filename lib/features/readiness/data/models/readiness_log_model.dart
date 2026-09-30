@@ -1,5 +1,5 @@
-import 'package:ironlink/features/readiness/domain/entities/readiness_log.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ironlink/features/readiness/domain/entities/readiness_log.dart';
 
 part 'readiness_log_model.freezed.dart';
 part 'readiness_log_model.g.dart';

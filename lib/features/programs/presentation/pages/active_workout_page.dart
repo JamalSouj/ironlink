@@ -1,12 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ironlink/core/di/injection.dart';
 import 'package:ironlink/features/programs/domain/entities/set_log.dart';
 import 'package:ironlink/features/programs/domain/entities/workout_session.dart';
 import 'package:ironlink/features/programs/presentation/bloc/workout/workout_logging_bloc.dart';
 import 'package:ironlink/features/programs/presentation/bloc/workout/workout_logging_event.dart';
 import 'package:ironlink/features/programs/presentation/bloc/workout/workout_logging_state.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:uuid/uuid.dart';
 
 class ActiveWorkoutPage extends StatefulWidget {
@@ -75,7 +75,7 @@ class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
     int sessionRpe = 7;
     int duration = 60;
 
-    showDialog(
+    showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (ctx) => AlertDialog(

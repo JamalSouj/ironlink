@@ -1,9 +1,9 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/features/programs/domain/usecases/watch_today_session.dart';
 import 'package:ironlink/features/programs/presentation/bloc/today/client_today_event.dart';
 import 'package:ironlink/features/programs/presentation/bloc/today/client_today_state.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
 
 @injectable
 class ClientTodayBloc extends Bloc<ClientTodayEvent, ClientTodayState> {

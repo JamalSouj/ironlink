@@ -1,6 +1,6 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/features/programs/domain/entities/program_block.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'program_builder_state.freezed.dart';
 

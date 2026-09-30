@@ -1,9 +1,9 @@
+import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/core/usecases/usecase.dart';
 import 'package:ironlink/features/auth/domain/entities/auth_user.dart';
 import 'package:ironlink/features/auth/domain/repositories/auth_repository.dart';
-import 'package:fpdart/fpdart.dart';
-import 'package:injectable/injectable.dart';
 
 /// Parameters required for the [SignUpCoach] use case.
 final class SignUpCoachParams {

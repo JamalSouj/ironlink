@@ -1,18 +1,15 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/features/programs/domain/usecases/complete_session.dart';
 import 'package:ironlink/features/programs/domain/usecases/log_set.dart';
 import 'package:ironlink/features/programs/presentation/bloc/workout/workout_logging_event.dart';
 import 'package:ironlink/features/programs/presentation/bloc/workout/workout_logging_state.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
-
-import 'package:ironlink/features/progressions/domain/usecases/evaluate_progression_unlock.dart';
 
 @injectable
 class WorkoutLoggingBloc extends Bloc<WorkoutLoggingEvent, WorkoutLoggingState> {
   WorkoutLoggingBloc(
     this._logSet,
     this._completeSession,
-    this._evaluateProgressionUnlock,
   ) : super(const WorkoutLoggingState.initial()) {
     on<WorkoutLoggingEvent>((event, emit) async {
       switch (event) {
@@ -28,7 +25,6 @@ class WorkoutLoggingBloc extends Bloc<WorkoutLoggingEvent, WorkoutLoggingState> 
 
   final LogSet _logSet;
   final CompleteSession _completeSession;
-  final EvaluateProgressionUnlock _evaluateProgressionUnlock;
 
   Future<void> _onSetLogged(
     WorkoutSetLogged e,

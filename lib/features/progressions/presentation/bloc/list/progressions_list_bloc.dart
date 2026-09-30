@@ -1,11 +1,11 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ironlink/features/auth/presentation/bloc/auth_state.dart';
 import 'package:ironlink/features/progressions/domain/entities/progression.dart';
 import 'package:ironlink/features/progressions/domain/usecases/watch_coach_progressions.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fpdart/fpdart.dart';
-import 'package:injectable/injectable.dart';
 import 'package:ironlink/features/progressions/presentation/bloc/list/progressions_list_event.dart';
 import 'package:ironlink/features/progressions/presentation/bloc/list/progressions_list_state.dart';
 
@@ -40,7 +40,7 @@ class ProgressionsListBloc
     }
 
     await emit.forEach<Either<Failure, List<Progression>>>(
-      _watchCoachProgressions(coachId!),
+      _watchCoachProgressions(coachId),
       onData: (either) => either.fold(
         (failure) => ProgressionsListState.error(failure),
         (progressions) => ProgressionsListState.loaded(progressions),

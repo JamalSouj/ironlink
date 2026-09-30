@@ -1,6 +1,6 @@
+import 'package:fpdart/fpdart.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/features/messaging/domain/entities/message_entity.dart';
-import 'package:fpdart/fpdart.dart';
 
 abstract class MessagingRepository {
   Stream<Either<Failure, List<MessageEntity>>> watchThread(String currentUserId, String peerId);

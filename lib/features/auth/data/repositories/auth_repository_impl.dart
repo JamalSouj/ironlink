@@ -1,12 +1,12 @@
 import 'dart:async';
 
+import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/core/error/exceptions.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/features/auth/data/datasources/remote/supabase_auth_data_source.dart';
 import 'package:ironlink/features/auth/domain/entities/auth_user.dart';
 import 'package:ironlink/features/auth/domain/repositories/auth_repository.dart';
-import 'package:fpdart/fpdart.dart';
-import 'package:injectable/injectable.dart';
 
 /// Concrete implementation of [AuthRepository].
 ///

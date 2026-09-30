@@ -1,5 +1,5 @@
-import 'package:ironlink/core/error/failures.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ironlink/core/error/failures.dart';
 
 part 'readiness_state.freezed.dart';
 

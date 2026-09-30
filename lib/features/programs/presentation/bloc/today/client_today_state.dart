@@ -1,6 +1,6 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/features/programs/domain/entities/workout_session.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'client_today_state.freezed.dart';
 

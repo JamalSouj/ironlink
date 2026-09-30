@@ -1,6 +1,6 @@
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/core/error/exceptions.dart';
 import 'package:ironlink/features/billing/data/models/subscription_model.dart';
-import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 
 @lazySingleton

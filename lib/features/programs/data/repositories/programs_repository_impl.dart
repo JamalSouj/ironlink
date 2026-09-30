@@ -1,3 +1,5 @@
+import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/core/error/exceptions.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/core/network/sync_service.dart';
@@ -9,8 +11,6 @@ import 'package:ironlink/features/programs/domain/entities/program_block.dart';
 import 'package:ironlink/features/programs/domain/entities/set_log.dart';
 import 'package:ironlink/features/programs/domain/entities/workout_session.dart';
 import 'package:ironlink/features/programs/domain/repositories/programs_repository.dart';
-import 'package:fpdart/fpdart.dart';
-import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: ProgramsRepository)
 class ProgramsRepositoryImpl implements ProgramsRepository, SyncDelegate {

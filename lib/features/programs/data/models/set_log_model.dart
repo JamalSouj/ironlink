@@ -1,5 +1,5 @@
-import 'package:ironlink/features/programs/domain/entities/set_log.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:ironlink/features/programs/domain/entities/set_log.dart';
 
 part 'set_log_model.freezed.dart';
 part 'set_log_model.g.dart';
