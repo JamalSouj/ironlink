@@ -189,6 +189,8 @@ class SupabaseAuthDataSource {
         .select()
         .eq('id', userId)
         .single();
-    return AuthUserModel.fromJson(Map<String, dynamic>.from(data as Map));
+    final map = Map<String, dynamic>.from(data as Map);
+    map['email'] = _client.auth.currentUser?.email ?? '';
+    return AuthUserModel.fromJson(map);
   }
 }
