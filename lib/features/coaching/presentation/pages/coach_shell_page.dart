@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ironlink/core/di/injection.dart';
 import 'package:ironlink/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:ironlink/features/auth/presentation/bloc/auth_event.dart';
 import 'package:ironlink/features/auth/presentation/bloc/auth_state.dart';
 import 'package:ironlink/features/messaging/presentation/bloc/badge/unread_badge_bloc.dart';
 import 'package:ironlink/features/messaging/presentation/bloc/badge/unread_badge_event.dart';
@@ -54,6 +55,15 @@ class CoachShellPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => getIt<UnreadBadgeBloc>()..add(UnreadBadgeEvent.started(currentUserId: currentUserId!)),
       child: Scaffold(
+        appBar: AppBar(
+          title: const Text('IronLink'),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.logout),
+              onPressed: () => context.read<AuthBloc>().add(const AuthEvent.signOutRequested()),
+            ),
+          ],
+        ),
         body: child,
         bottomNavigationBar: Builder(
           builder: (context) {
