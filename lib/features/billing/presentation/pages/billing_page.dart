@@ -7,7 +7,9 @@ import 'package:ironlink/features/billing/presentation/bloc/billing_event.dart';
 import 'package:ironlink/features/billing/presentation/bloc/billing_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:ironlink/core/utils/constants.dart';
 
 class BillingPage extends StatelessWidget {
   const BillingPage({super.key});
@@ -79,9 +81,9 @@ class BillingPage extends StatelessWidget {
                         ElevatedButton(
                           onPressed: () {
                             context.read<BillingBloc>().add(
-                                  const BillingEvent.checkoutRequested(
-                                    priceId: 'PRICE_ID_PRO',
-                                    redirectUrl: 'https://yourapp.com/billing',
+                                  BillingEvent.checkoutRequested(
+                                    priceId: dotenv.env[AppConstants.envStripeProPriceId] ?? '',
+                                    redirectUrl: 'ironlink://billing',
                                   ),
                                 );
                           },

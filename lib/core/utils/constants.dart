@@ -10,6 +10,9 @@ abstract final class AppConstants {
   /// The `.env` key for the Supabase anonymous (public) API key.
   static const String envSupabasePublishableKey = 'SUPABASE_PUBLISHABLE_KEY';
 
+  /// The `.env` key for the Stripe Pro Plan Price ID.
+  static const String envStripeProPriceId = 'STRIPE_PRO_PRICE_ID';
+
   // ── Pagination ──────────────────────────────────────────────────────────
   static const int defaultPageSize = 20;
 
