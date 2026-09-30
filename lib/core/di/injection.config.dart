@@ -262,7 +262,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i749.WorkoutLoggingBloc(
         gh<_i29.LogSet>(),
         gh<_i342.CompleteSession>(),
-        gh<_i693.EvaluateProgressionUnlock>(),
       ),
     );
     gh.factory<_i193.WatchMyClients>(
