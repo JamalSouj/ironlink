@@ -22,9 +22,17 @@ class ProgramBuilderBloc
         ProgramBuilderStarted(:final programId) => _onStarted(programId, emit),
         ProgramBuilderAddBlock(:final name, :final blockOrder, :final focus) =>
           _onAddBlock(name, blockOrder, focus, emit),
-        ProgramBuilderScheduleSession(:final blockId, :final clientId, :final date) =>
+        ProgramBuilderScheduleSession(
+          :final blockId,
+          :final clientId,
+          :final date,
+        ) =>
           _onScheduleSession(blockId, clientId, date, emit),
-        ProgramBuilderDuplicateWeek(:final blockId, :final sourceStart, :final targetStart) =>
+        ProgramBuilderDuplicateWeek(
+          :final blockId,
+          :final sourceStart,
+          :final targetStart,
+        ) =>
           _onDuplicateWeek(blockId, sourceStart, targetStart, emit),
       };
     });

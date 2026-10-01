@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/features/exercises/domain/entities/exercise.dart';
 import 'package:ironlink/features/exercises/domain/usecases/get_exercises.dart';
 
@@ -22,6 +23,7 @@ class ExerciseError extends ExerciseState {
   ExerciseError(this.message);
 }
 
+@injectable
 class ExerciseBloc extends Bloc<ExerciseEvent, ExerciseState> {
   final GetExercises getExercises;
 

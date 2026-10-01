@@ -6,7 +6,11 @@ class ClientSummaryModel {
 
   static ClientSummary fromJson(Map<String, dynamic> json) {
     // The root JSON is the `profiles` row.
-    final userModel = AuthUserModel.fromJson(json);
+    // 'email' is in auth.users, not profiles, so we inject a default to satisfy AuthUserModel.
+    final map = Map<String, dynamic>.from(json);
+    map['email'] = map['email'] ?? '';
+    
+    final userModel = AuthUserModel.fromJson(map);
 
     // We expect programs and readiness_logs to be joined. They might be lists or null.
     String? activeProgramName;

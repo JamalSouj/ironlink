@@ -18,25 +18,26 @@ abstract class MessageModel with _$MessageModel {
     DateTime? readAt,
   }) = _MessageModel;
 
-  factory MessageModel.fromJson(Map<String, dynamic> json) => _$MessageModelFromJson(json);
+  factory MessageModel.fromJson(Map<String, dynamic> json) =>
+      _$MessageModelFromJson(json);
 
   MessageEntity toDomain() => MessageEntity(
-        id: id,
-        senderId: senderId,
-        recipientId: recipientId,
-        body: body,
-        attachmentUrl: attachmentUrl,
-        createdAt: createdAt,
-        readAt: readAt,
-      );
+    id: id,
+    senderId: senderId,
+    recipientId: recipientId,
+    body: body,
+    attachmentUrl: attachmentUrl,
+    createdAt: createdAt,
+    readAt: readAt,
+  );
 
   static MessageModel fromDomain(MessageEntity entity) => MessageModel(
-        id: entity.id,
-        senderId: entity.senderId,
-        recipientId: entity.recipientId,
-        body: entity.body,
-        attachmentUrl: entity.attachmentUrl,
-        createdAt: entity.createdAt,
-        readAt: entity.readAt,
-      );
+    id: entity.id,
+    senderId: entity.senderId,
+    recipientId: entity.recipientId,
+    body: entity.body,
+    attachmentUrl: entity.attachmentUrl,
+    createdAt: entity.createdAt,
+    readAt: entity.readAt,
+  );
 }

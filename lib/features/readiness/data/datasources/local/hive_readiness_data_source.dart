@@ -23,7 +23,9 @@ class HiveReadinessDataSource {
   Future<List<ReadinessLogModel>> getQueuedSubmissions() async {
     final box = await _box;
     return box.values.map((jsonStr) {
-      return ReadinessLogModel.fromJson(jsonDecode(jsonStr) as Map<String, dynamic>);
+      return ReadinessLogModel.fromJson(
+        jsonDecode(jsonStr) as Map<String, dynamic>,
+      );
     }).toList();
   }
 

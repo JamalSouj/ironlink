@@ -9,7 +9,7 @@ import 'package:ironlink/features/billing/domain/repositories/billing_repository
 class WatchSubscriptionStatus extends StreamUseCase<Subscription?, String> {
   WatchSubscriptionStatus(this._repository);
   final BillingRepository _repository;
-  
+
   @override
   Stream<Either<Failure, Subscription?>> call(String params) {
     return _repository.watchSubscriptionStatus(params);

@@ -18,25 +18,26 @@ abstract class ReadinessLogModel with _$ReadinessLogModel {
     required double readinessScore,
   }) = _ReadinessLogModel;
 
-  factory ReadinessLogModel.fromJson(Map<String, dynamic> json) => _$ReadinessLogModelFromJson(json);
+  factory ReadinessLogModel.fromJson(Map<String, dynamic> json) =>
+      _$ReadinessLogModelFromJson(json);
 
   ReadinessLog toDomain() => ReadinessLog(
-        id: id,
-        clientId: clientId,
-        logDate: logDate,
-        sleepQuality: sleepQuality,
-        soreness: soreness,
-        stress: stress,
-        readinessScore: readinessScore,
-      );
+    id: id,
+    clientId: clientId,
+    logDate: logDate,
+    sleepQuality: sleepQuality,
+    soreness: soreness,
+    stress: stress,
+    readinessScore: readinessScore,
+  );
 
   static ReadinessLogModel fromDomain(ReadinessLog entity) => ReadinessLogModel(
-        id: entity.id,
-        clientId: entity.clientId,
-        logDate: entity.logDate,
-        sleepQuality: entity.sleepQuality,
-        soreness: entity.soreness,
-        stress: entity.stress,
-        readinessScore: entity.readinessScore,
-      );
+    id: entity.id,
+    clientId: entity.clientId,
+    logDate: entity.logDate,
+    sleepQuality: entity.sleepQuality,
+    soreness: entity.soreness,
+    stress: entity.stress,
+    readinessScore: entity.readinessScore,
+  );
 }

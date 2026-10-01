@@ -8,6 +8,9 @@ part 'chat_thread_state.freezed.dart';
 sealed class ChatThreadState with _$ChatThreadState {
   const factory ChatThreadState.initial() = ChatThreadInitial;
   const factory ChatThreadState.loading() = ChatThreadLoading;
-  const factory ChatThreadState.loaded({required List<MessageEntity> messages}) = ChatThreadLoaded;
-  const factory ChatThreadState.error({required Failure failure}) = ChatThreadError;
+  const factory ChatThreadState.loaded({
+    required List<MessageEntity> messages,
+  }) = ChatThreadLoaded;
+  const factory ChatThreadState.error({required Failure failure}) =
+      ChatThreadError;
 }

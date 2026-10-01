@@ -51,6 +51,7 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.13.1
 
   # ── Code generation ────────────────────────────────────────────────────────
   build_runner: ^2.4.10
@@ -66,3 +67,9 @@ flutter:
 
   assets:
     - .env
+    - asset/icon/
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "asset/icon/ironlik(1).png"

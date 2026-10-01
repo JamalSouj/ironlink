@@ -22,6 +22,10 @@ class CompleteSession extends UseCase<Unit, CompleteSessionParams> {
 
   @override
   Future<Either<Failure, Unit>> call(CompleteSessionParams params) async {
-    return await _repository.completeSession(params.sessionId, params.sessionRpe, params.durationMinutes);
+    return await _repository.completeSession(
+      params.sessionId,
+      params.sessionRpe,
+      params.durationMinutes,
+    );
   }
 }

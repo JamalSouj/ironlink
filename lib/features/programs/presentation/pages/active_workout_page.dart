@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ironlink/core/di/injection.dart';
+import 'package:ironlink/features/exercises/domain/entities/exercise.dart';
+import 'package:ironlink/features/exercises/domain/repositories/exercise_repository.dart';
 import 'package:ironlink/features/programs/domain/entities/set_log.dart';
 import 'package:ironlink/features/programs/domain/entities/workout_session.dart';
 import 'package:ironlink/features/programs/presentation/bloc/workout/workout_logging_bloc.dart';
@@ -19,9 +21,27 @@ class ActiveWorkoutPage extends StatefulWidget {
 
 class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
   int _currentSetIndex = 0;
+  List<Exercise> _exercises = [];
   final TextEditingController _repsController = TextEditingController();
   final TextEditingController _loadController = TextEditingController();
   final TextEditingController _rpeController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadExercises();
+  }
+
+  Future<void> _loadExercises() async {
+    final repo = getIt<ExerciseRepository>();
+    final result = await repo.getExercises();
+    if (mounted) {
+      result.fold(
+        (failure) => debugPrint('Failed to load exercises: ${failure.message}'),
+        (exercises) => setState(() => _exercises = exercises),
+      );
+    }
+  }
 
   @override
   void dispose() {
@@ -35,8 +55,10 @@ class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
     if (_currentSetIndex >= widget.session.setLogs.length) return;
 
     final prescribed = widget.session.setLogs[_currentSetIndex];
-    final reps = int.tryParse(_repsController.text) ?? prescribed.prescribedReps ?? 0;
-    final load = double.tryParse(_loadController.text) ?? prescribed.prescribedLoadKg;
+    final reps =
+        int.tryParse(_repsController.text) ?? prescribed.prescribedReps ?? 0;
+    final load =
+        double.tryParse(_loadController.text) ?? prescribed.prescribedLoadKg;
     final rpe = int.tryParse(_rpeController.text)?.toDouble();
 
     final actualSetLog = SetLog(
@@ -53,7 +75,9 @@ class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
       actualRpe: rpe,
     );
 
-    context.read<WorkoutLoggingBloc>().add(WorkoutLoggingEvent.setLogged(setLog: actualSetLog));
+    context.read<WorkoutLoggingBloc>().add(
+      WorkoutLoggingEvent.setLogged(setLog: actualSetLog),
+    );
 
     if (_currentSetIndex < widget.session.setLogs.length - 1) {
       setState(() {
@@ -86,13 +110,17 @@ class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
             const Text('Great job! How was the session overall?'),
             const SizedBox(height: 16),
             TextField(
-              decoration: const InputDecoration(labelText: 'Session RPE (1-10)'),
+              decoration: const InputDecoration(
+                labelText: 'Session RPE (1-10)',
+              ),
               keyboardType: TextInputType.number,
               onChanged: (v) => sessionRpe = int.tryParse(v) ?? 7,
             ),
             const SizedBox(height: 16),
             TextField(
-              decoration: const InputDecoration(labelText: 'Duration (minutes)'),
+              decoration: const InputDecoration(
+                labelText: 'Duration (minutes)',
+              ),
               keyboardType: TextInputType.number,
               onChanged: (v) => duration = int.tryParse(v) ?? 60,
             ),
@@ -103,12 +131,12 @@ class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
             onPressed: () {
               Navigator.pop(ctx);
               context.read<WorkoutLoggingBloc>().add(
-                    WorkoutLoggingEvent.sessionCompleted(
-                      sessionId: widget.session.id,
-                      sessionRpe: sessionRpe,
-                      durationMinutes: duration,
-                    ),
-                  );
+                WorkoutLoggingEvent.sessionCompleted(
+                  sessionId: widget.session.id,
+                  sessionRpe: sessionRpe,
+                  durationMinutes: duration,
+                ),
+              );
             },
             child: const Text('Finish'),
           ),
@@ -120,7 +148,9 @@ class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<WorkoutLoggingBloc>()..add(WorkoutLoggingEvent.started(sessionId: widget.session.id)),
+      create: (context) =>
+          getIt<WorkoutLoggingBloc>()
+            ..add(WorkoutLoggingEvent.started(sessionId: widget.session.id)),
       child: BlocConsumer<WorkoutLoggingBloc, WorkoutLoggingState>(
         listener: (context, state) {
           switch (state) {
@@ -128,12 +158,18 @@ class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
               if (unlockedLevels.isNotEmpty) {
                 // Show level up moment!
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('🎉 LEVEL UP! You unlocked a new progression level!')),
+                  const SnackBar(
+                    content: Text(
+                      '🎉 LEVEL UP! You unlocked a new progression level!',
+                    ),
+                  ),
                 );
               }
               context.pop(); // Go back to Today
             case WorkoutLoggingError(:final failure):
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: ${failure.message}')));
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Error: ${failure.message}')),
+              );
             default:
               break;
           }
@@ -142,7 +178,9 @@ class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
           return Scaffold(
             appBar: AppBar(title: const Text('Active Workout')),
             body: switch (state) {
-              WorkoutLoggingSubmitting() => const Center(child: CircularProgressIndicator()),
+              WorkoutLoggingSubmitting() => const Center(
+                child: CircularProgressIndicator(),
+              ),
               _ => () {
                 if (_currentSetIndex >= widget.session.setLogs.length) {
                   return Center(
@@ -162,22 +200,44 @@ class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
                     children: [
                       Text(
                         'Set ${_currentSetIndex + 1} of ${widget.session.setLogs.length}',
-                        style: const TextStyle(fontSize: 18, color: Colors.grey),
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.grey,
+                        ),
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        'Exercise ID: ${currentSet.exerciseId}', // TODO: Resolve name from local exercises
-                        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                        _exercises.isNotEmpty
+                            ? _exercises
+                                  .firstWhere(
+                                    (e) => e.id == currentSet.exerciseId,
+                                    orElse: () => Exercise(
+                                      id: '',
+                                      name: 'Unknown Exercise',
+                                      category: '',
+                                    ),
+                                  )
+                                  .name
+                            : 'Exercise ID: ${currentSet.exerciseId}',
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       const SizedBox(height: 16),
-                      Text("Prescribed: ${currentSet.prescribedReps ?? '-'} reps @ ${currentSet.prescribedLoadKg ?? '-'} kg"),
+                      Text(
+                        "Prescribed: ${currentSet.prescribedReps ?? '-'} reps @ ${currentSet.prescribedLoadKg ?? '-'} kg",
+                      ),
                       const SizedBox(height: 32),
                       Row(
                         children: [
                           Expanded(
                             child: TextField(
                               controller: _loadController,
-                              decoration: const InputDecoration(labelText: 'Load (kg)', border: OutlineInputBorder()),
+                              decoration: const InputDecoration(
+                                labelText: 'Load (kg)',
+                                border: OutlineInputBorder(),
+                              ),
                               keyboardType: TextInputType.number,
                             ),
                           ),
@@ -185,7 +245,10 @@ class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
                           Expanded(
                             child: TextField(
                               controller: _repsController,
-                              decoration: const InputDecoration(labelText: 'Reps', border: OutlineInputBorder()),
+                              decoration: const InputDecoration(
+                                labelText: 'Reps',
+                                border: OutlineInputBorder(),
+                              ),
                               keyboardType: TextInputType.number,
                             ),
                           ),
@@ -193,7 +256,10 @@ class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
                           Expanded(
                             child: TextField(
                               controller: _rpeController,
-                              decoration: const InputDecoration(labelText: 'RPE', border: OutlineInputBorder()),
+                              decoration: const InputDecoration(
+                                labelText: 'RPE',
+                                border: OutlineInputBorder(),
+                              ),
                               keyboardType: TextInputType.number,
                             ),
                           ),
@@ -202,8 +268,13 @@ class _ActiveWorkoutPageState extends State<ActiveWorkoutPage> {
                       const Spacer(),
                       ElevatedButton(
                         onPressed: () => _submitSet(context),
-                        style: ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 60)),
-                        child: const Text('Log Set & Continue', style: TextStyle(fontSize: 18)),
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(double.infinity, 60),
+                        ),
+                        child: const Text(
+                          'Log Set & Continue',
+                          style: TextStyle(fontSize: 18),
+                        ),
                       ),
                     ],
                   ),

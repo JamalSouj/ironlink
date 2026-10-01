@@ -207,13 +207,19 @@ class SupabaseProgramsDataSource {
         );
   }
 
-  Stream<List<WorkoutSessionModel>> watchUpcomingSessions(String clientId, DateTime fromDate) {
+  Stream<List<WorkoutSessionModel>> watchUpcomingSessions(
+    String clientId,
+    DateTime fromDate,
+  ) {
     return _client
         .from('workout_sessions')
         .stream(primaryKey: ['id'])
         .eq('client_id', clientId)
         .gte('scheduled_date', fromDate.toIso8601String().split('T').first)
-        .map((data) => data.map((json) => WorkoutSessionModel.fromJson(json)).toList());
+        .map(
+          (data) =>
+              data.map((json) => WorkoutSessionModel.fromJson(json)).toList(),
+        );
   }
 
   Stream<WorkoutSessionModel?> watchTodaySession(String clientId) {
@@ -224,7 +230,10 @@ class SupabaseProgramsDataSource {
         .stream(primaryKey: ['id'])
         .eq('client_id', clientId)
         .eq('scheduled_date', today)
-        .map((data) => data.isEmpty ? null : WorkoutSessionModel.fromJson(data.first));
+        .map(
+          (data) =>
+              data.isEmpty ? null : WorkoutSessionModel.fromJson(data.first),
+        );
   }
 
   Future<void> logSet(SetLogModel log) async {
@@ -237,11 +246,14 @@ class SupabaseProgramsDataSource {
 
   Future<void> completeSession(String sessionId, int rpe, int duration) async {
     try {
-      await _client.from('workout_sessions').update({
-        'status': 'completed',
-        'session_rpe': rpe,
-        'duration_minutes': duration,
-      }).eq('id', sessionId);
+      await _client
+          .from('workout_sessions')
+          .update({
+            'status': 'completed',
+            'session_rpe': rpe,
+            'duration_minutes': duration,
+          })
+          .eq('id', sessionId);
     } catch (e) {
       throw ServerException(message: e.toString());
     }

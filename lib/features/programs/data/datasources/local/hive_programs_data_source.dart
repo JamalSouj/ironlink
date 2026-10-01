@@ -42,14 +42,23 @@ class HiveProgramsDataSource {
   }
 
   // --- SESSIONS ---
-  Future<void> queueSessionCompletion(String sessionId, int rpe, int duration) async {
+  Future<void> queueSessionCompletion(
+    String sessionId,
+    int rpe,
+    int duration,
+  ) async {
     final box = await _sessionsBox;
-    await box.put(sessionId, jsonEncode({'id': sessionId, 'rpe': rpe, 'duration': duration}));
+    await box.put(
+      sessionId,
+      jsonEncode({'id': sessionId, 'rpe': rpe, 'duration': duration}),
+    );
   }
 
   Future<List<Map<String, dynamic>>> getQueuedSessions() async {
     final box = await _sessionsBox;
-    return box.values.map((jsonStr) => jsonDecode(jsonStr) as Map<String, dynamic>).toList();
+    return box.values
+        .map((jsonStr) => jsonDecode(jsonStr) as Map<String, dynamic>)
+        .toList();
   }
 
   Future<void> removeQueuedSession(String id) async {

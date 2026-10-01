@@ -8,7 +8,10 @@ class SupabaseBillingDataSource {
   const SupabaseBillingDataSource(this._client);
   final sb.SupabaseClient _client;
 
-  Future<String> createCheckoutSession(String priceId, String redirectUrl) async {
+  Future<String> createCheckoutSession(
+    String priceId,
+    String redirectUrl,
+  ) async {
     try {
       final response = await _client.functions.invoke(
         'stripe-checkout',
@@ -16,9 +19,11 @@ class SupabaseBillingDataSource {
       );
       final data = response.data as Map<String, dynamic>?;
       if (response.status != 200 || data == null) {
-        throw ServerException(message: data?['error'] as String? ?? 'Unknown error');
+        throw ServerException(
+          message: data?['error'] as String? ?? 'Unknown error',
+        );
       }
-      
+
       return data['checkout_url'] as String;
     } catch (e) {
       throw ServerException(message: e.toString());
@@ -30,7 +35,10 @@ class SupabaseBillingDataSource {
         .from('subscriptions')
         .stream(primaryKey: ['id'])
         .eq('coach_id', coachId)
-        .map((data) => data.isEmpty ? null : SubscriptionModel.fromJson(data.first));
+        .map(
+          (data) =>
+              data.isEmpty ? null : SubscriptionModel.fromJson(data.first),
+        );
   }
 
   Future<SubscriptionModel?> checkSubscriptionStatus(String coachId) async {

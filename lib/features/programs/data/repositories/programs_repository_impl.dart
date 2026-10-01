@@ -14,11 +14,7 @@ import 'package:ironlink/features/programs/domain/repositories/programs_reposito
 
 @LazySingleton(as: ProgramsRepository)
 class ProgramsRepositoryImpl implements ProgramsRepository, SyncDelegate {
-  ProgramsRepositoryImpl(
-    this._dataSource,
-    this._local,
-    this._syncService,
-  ) {
+  ProgramsRepositoryImpl(this._dataSource, this._local, this._syncService) {
     _syncService.registerDelegate(this);
   }
 
@@ -179,61 +175,95 @@ class ProgramsRepositoryImpl implements ProgramsRepository, SyncDelegate {
   }
 
   @override
-  Stream<Either<Failure, List<Program>>> watchClientPrograms(String clientId) async* {
+  Stream<Either<Failure, List<Program>>> watchClientPrograms(
+    String clientId,
+  ) async* {
     try {
       await for (final models in _dataSource.watchClientPrograms(clientId)) {
-        yield right<Failure, List<Program>>(models.map((m) => m.toDomain()).toList());
+        yield right<Failure, List<Program>>(
+          models.map((m) => m.toDomain()).toList(),
+        );
       }
     } catch (error) {
       if (error is ServerException) {
-        yield left<Failure, List<Program>>(ServerFailure(message: error.message));
+        yield left<Failure, List<Program>>(
+          ServerFailure(message: error.message),
+        );
       } else {
-        yield left<Failure, List<Program>>(ServerFailure(message: error.toString()));
+        yield left<Failure, List<Program>>(
+          ServerFailure(message: error.toString()),
+        );
       }
     }
   }
 
   @override
-  Stream<Either<Failure, List<ProgramBlock>>> watchProgramBlocks(String programId) async* {
+  Stream<Either<Failure, List<ProgramBlock>>> watchProgramBlocks(
+    String programId,
+  ) async* {
     try {
       await for (final models in _dataSource.watchProgramBlocks(programId)) {
-        yield right<Failure, List<ProgramBlock>>(models.map((m) => m.toDomain()).toList());
+        yield right<Failure, List<ProgramBlock>>(
+          models.map((m) => m.toDomain()).toList(),
+        );
       }
     } catch (error) {
       if (error is ServerException) {
-        yield left<Failure, List<ProgramBlock>>(ServerFailure(message: error.message));
+        yield left<Failure, List<ProgramBlock>>(
+          ServerFailure(message: error.message),
+        );
       } else {
-        yield left<Failure, List<ProgramBlock>>(ServerFailure(message: error.toString()));
+        yield left<Failure, List<ProgramBlock>>(
+          ServerFailure(message: error.toString()),
+        );
       }
     }
   }
 
   @override
-  Stream<Either<Failure, List<WorkoutSession>>> watchUpcomingSessions(String clientId, DateTime fromDate) async* {
+  Stream<Either<Failure, List<WorkoutSession>>> watchUpcomingSessions(
+    String clientId,
+    DateTime fromDate,
+  ) async* {
     try {
-      await for (final models in _dataSource.watchUpcomingSessions(clientId, fromDate)) {
-        yield right<Failure, List<WorkoutSession>>(models.map((m) => m.toDomain()).toList());
+      await for (final models in _dataSource.watchUpcomingSessions(
+        clientId,
+        fromDate,
+      )) {
+        yield right<Failure, List<WorkoutSession>>(
+          models.map((m) => m.toDomain()).toList(),
+        );
       }
     } catch (error) {
       if (error is ServerException) {
-        yield left<Failure, List<WorkoutSession>>(ServerFailure(message: error.message));
+        yield left<Failure, List<WorkoutSession>>(
+          ServerFailure(message: error.message),
+        );
       } else {
-        yield left<Failure, List<WorkoutSession>>(ServerFailure(message: error.toString()));
+        yield left<Failure, List<WorkoutSession>>(
+          ServerFailure(message: error.toString()),
+        );
       }
     }
   }
 
   @override
-  Stream<Either<Failure, WorkoutSession?>> watchTodaySession(String clientId) async* {
+  Stream<Either<Failure, WorkoutSession?>> watchTodaySession(
+    String clientId,
+  ) async* {
     try {
       await for (final session in _dataSource.watchTodaySession(clientId)) {
         yield right<Failure, WorkoutSession?>(session?.toDomain());
       }
     } catch (error) {
       if (error is ServerException) {
-        yield left<Failure, WorkoutSession?>(ServerFailure(message: error.message));
+        yield left<Failure, WorkoutSession?>(
+          ServerFailure(message: error.message),
+        );
       } else {
-        yield left<Failure, WorkoutSession?>(ServerFailure(message: error.toString()));
+        yield left<Failure, WorkoutSession?>(
+          ServerFailure(message: error.toString()),
+        );
       }
     }
   }
@@ -256,12 +286,24 @@ class ProgramsRepositoryImpl implements ProgramsRepository, SyncDelegate {
   }
 
   @override
-  Future<Either<Failure, Unit>> completeSession(String sessionId, int sessionRpe, int durationMinutes) async {
+  Future<Either<Failure, Unit>> completeSession(
+    String sessionId,
+    int sessionRpe,
+    int durationMinutes,
+  ) async {
     try {
       if (_syncService.isOnline) {
-        await _dataSource.completeSession(sessionId, sessionRpe, durationMinutes);
+        await _dataSource.completeSession(
+          sessionId,
+          sessionRpe,
+          durationMinutes,
+        );
       } else {
-        await _local.queueSessionCompletion(sessionId, sessionRpe, durationMinutes);
+        await _local.queueSessionCompletion(
+          sessionId,
+          sessionRpe,
+          durationMinutes,
+        );
       }
       return const Right(unit);
     } on ServerException catch (e) {
@@ -271,4 +313,3 @@ class ProgramsRepositoryImpl implements ProgramsRepository, SyncDelegate {
     }
   }
 }
-

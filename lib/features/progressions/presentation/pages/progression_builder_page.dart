@@ -50,40 +50,40 @@ class _ProgressionBuilderView extends StatelessWidget {
       body: BlocBuilder<ProgressionBuilderBloc, ProgressionBuilderState>(
         builder: (context, state) {
           return switch (state) {
-            ProgressionBuilderInitial() ||
-            ProgressionBuilderLoading() =>
+            ProgressionBuilderInitial() || ProgressionBuilderLoading() =>
               const Center(child: CircularProgressIndicator()),
-            ProgressionBuilderError(:final failure) =>
-              Center(child: Text('Error: ${failure.message}')),
+            ProgressionBuilderError(:final failure) => Center(
+              child: Text('Error: ${failure.message}'),
+            ),
             ProgressionBuilderLoaded(:final levels) => () {
-                if (levels.isEmpty) {
-                  return const Center(child: Text('No levels yet. Add one!'));
-                }
-                return ReorderableListView.builder(
-                  padding: const EdgeInsets.all(16.0),
-                  itemCount: levels.length,
-                  onReorder: (oldIndex, newIndex) {
-                    context.read<ProgressionBuilderBloc>().add(
-                      ProgressionBuilderEvent.levelsReordered(oldIndex, newIndex),
-                    );
-                  },
-                  itemBuilder: (context, index) {
-                    final level = levels[index];
-                    return Card(
-                      key: ValueKey(level.id),
-                      margin: const EdgeInsets.only(bottom: 8.0),
-                      child: ListTile(
-                        leading: CircleAvatar(child: Text('${index + 1}')),
-                        title: Text(
-                          'Exercise: ${level.exerciseId}',
-                        ), // In reality, we'd fetch the Exercise name
-                        subtitle: Text('Criteria: ${level.unlockCriteria}'),
-                        trailing: const Icon(Icons.drag_handle),
-                      ),
-                    );
-                  },
-                );
-              }(),
+              if (levels.isEmpty) {
+                return const Center(child: Text('No levels yet. Add one!'));
+              }
+              return ReorderableListView.builder(
+                padding: const EdgeInsets.all(16.0),
+                itemCount: levels.length,
+                onReorder: (oldIndex, newIndex) {
+                  context.read<ProgressionBuilderBloc>().add(
+                    ProgressionBuilderEvent.levelsReordered(oldIndex, newIndex),
+                  );
+                },
+                itemBuilder: (context, index) {
+                  final level = levels[index];
+                  return Card(
+                    key: ValueKey(level.id),
+                    margin: const EdgeInsets.only(bottom: 8.0),
+                    child: ListTile(
+                      leading: CircleAvatar(child: Text('${index + 1}')),
+                      title: Text(
+                        'Exercise: ${level.exerciseId}',
+                      ), // In reality, we'd fetch the Exercise name
+                      subtitle: Text('Criteria: ${level.unlockCriteria}'),
+                      trailing: const Icon(Icons.drag_handle),
+                    ),
+                  );
+                },
+              );
+            }(),
           };
         },
       ),

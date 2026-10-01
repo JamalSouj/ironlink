@@ -1,8 +1,10 @@
 import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/features/exercises/domain/entities/exercise.dart';
 import 'package:ironlink/features/exercises/domain/repositories/exercise_repository.dart';
 
+@injectable
 class GetExercises {
   final ExerciseRepository repository;
 

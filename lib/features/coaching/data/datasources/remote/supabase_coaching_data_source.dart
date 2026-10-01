@@ -25,8 +25,8 @@ class SupabaseCoachingDataSource {
                 .from('profiles')
                 .select('''
               *,
-              coach_clients!inner(*),
-              programs(name),
+              coach_clients!coach_clients_client_id_fkey!inner(*),
+              programs!programs_client_id_fkey(name),
               readiness_logs(readiness_score)
             ''')
                 .eq('coach_clients.coach_id', coachId)
@@ -47,7 +47,10 @@ class SupabaseCoachingDataSource {
   Future<String> generateInviteCode(String coachId) async {
     try {
       // Very simple invite code generator, e.g. 6 chars
-      final inviteCode = List.generate(6, (_) => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'[Random().nextInt(36)]).join();
+      final inviteCode = List.generate(
+        6,
+        (_) => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'[Random().nextInt(36)],
+      ).join();
 
       await _client.from('coach_invites').insert({
         'coach_id': coachId,

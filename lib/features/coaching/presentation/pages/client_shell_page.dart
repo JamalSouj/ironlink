@@ -11,7 +11,7 @@ import 'package:ironlink/features/messaging/presentation/bloc/badge/unread_badge
 
 class ClientShellPage extends StatelessWidget {
   const ClientShellPage({super.key, required this.child});
-  
+
   final Widget child;
 
   int _calculateSelectedIndex(BuildContext context) {
@@ -49,14 +49,18 @@ class ClientShellPage extends StatelessWidget {
     }
 
     return BlocProvider(
-      create: (context) => getIt<UnreadBadgeBloc>()..add(UnreadBadgeEvent.started(currentUserId: currentUserId!)),
+      create: (context) =>
+          getIt<UnreadBadgeBloc>()
+            ..add(UnreadBadgeEvent.started(currentUserId: currentUserId!)),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('IronLink'),
           actions: [
             IconButton(
               icon: const Icon(Icons.logout),
-              onPressed: () => context.read<AuthBloc>().add(const AuthEvent.signOutRequested()),
+              onPressed: () => context.read<AuthBloc>().add(
+                const AuthEvent.signOutRequested(),
+              ),
             ),
           ],
         ),
@@ -68,8 +72,14 @@ class ClientShellPage extends StatelessWidget {
               onTap: (index) => _onItemTapped(index, context),
               type: BottomNavigationBarType.fixed,
               items: [
-                const BottomNavigationBarItem(icon: Icon(Icons.today), label: 'Today'),
-                const BottomNavigationBarItem(icon: Icon(Icons.emoji_events), label: 'Progressions'),
+                const BottomNavigationBarItem(
+                  icon: Icon(Icons.today),
+                  label: 'Today',
+                ),
+                const BottomNavigationBarItem(
+                  icon: Icon(Icons.emoji_events),
+                  label: 'Progressions',
+                ),
                 BottomNavigationBarItem(
                   icon: BlocBuilder<UnreadBadgeBloc, UnreadBadgeState>(
                     builder: (context, state) {
@@ -85,7 +95,7 @@ class ClientShellPage extends StatelessWidget {
                 ),
               ],
             );
-          }
+          },
         ),
       ),
     );

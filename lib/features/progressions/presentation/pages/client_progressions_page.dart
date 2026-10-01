@@ -12,42 +12,44 @@ class ClientProgressionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<ClientProgressionsBloc>()..add(ClientProgressionsEvent.started(clientId: clientId)),
+      create: (context) =>
+          getIt<ClientProgressionsBloc>()
+            ..add(ClientProgressionsEvent.started(clientId: clientId)),
       child: Scaffold(
         appBar: AppBar(title: const Text('My Progressions')),
         body: BlocBuilder<ClientProgressionsBloc, ClientProgressionsState>(
           builder: (context, state) {
             return switch (state) {
-              ClientProgressionsInitial() ||
-              ClientProgressionsLoading() =>
+              ClientProgressionsInitial() || ClientProgressionsLoading() =>
                 const Center(child: CircularProgressIndicator()),
-              ClientProgressionsError(:final failure) =>
-                Center(child: Text('Error: ${failure.message}')),
+              ClientProgressionsError(:final failure) => Center(
+                child: Text('Error: ${failure.message}'),
+              ),
               ClientProgressionsLoaded(:final progressions) => () {
-                  if (progressions.isEmpty) {
-                    return const Center(child: Text('No active progressions.'));
-                  }
-                  return ListView.builder(
-                    padding: const EdgeInsets.all(16.0),
-                    itemCount: progressions.length,
-                    itemBuilder: (context, index) {
-                      final prog = progressions[index];
-                      return Card(
-                        child: ListTile(
-                          title: Text(
-                            prog.progressionId,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Text('ID: ${prog.id}'),
-                          trailing: const Icon(Icons.arrow_forward_ios),
-                          onTap: () {
-                            // View details
-                          },
+                if (progressions.isEmpty) {
+                  return const Center(child: Text('No active progressions.'));
+                }
+                return ListView.builder(
+                  padding: const EdgeInsets.all(16.0),
+                  itemCount: progressions.length,
+                  itemBuilder: (context, index) {
+                    final prog = progressions[index];
+                    return Card(
+                      child: ListTile(
+                        title: Text(
+                          prog.progressionId,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                         ),
-                      );
-                    },
-                  );
-                }(),
+                        subtitle: Text('ID: ${prog.id}'),
+                        trailing: const Icon(Icons.arrow_forward_ios),
+                        onTap: () {
+                          // View details
+                        },
+                      ),
+                    );
+                  },
+                );
+              }(),
             };
           },
         ),

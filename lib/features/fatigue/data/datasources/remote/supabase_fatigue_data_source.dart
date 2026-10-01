@@ -36,7 +36,10 @@ class SupabaseFatigueDataSource {
       for (final s in sessions) {
         final date = s['scheduled_date'] as String;
         if (!dateMap.containsKey(date)) {
-          dateMap[date] = {'readiness': null, 'sessions': <Map<String, dynamic>>[]};
+          dateMap[date] = {
+            'readiness': null,
+            'sessions': <Map<String, dynamic>>[],
+          };
         }
         (dateMap[date]!['sessions'] as List).add(s);
       }

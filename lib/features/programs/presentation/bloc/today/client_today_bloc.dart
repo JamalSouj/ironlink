@@ -7,9 +7,8 @@ import 'package:ironlink/features/programs/presentation/bloc/today/client_today_
 
 @injectable
 class ClientTodayBloc extends Bloc<ClientTodayEvent, ClientTodayState> {
-  ClientTodayBloc(
-    this._watchTodaySession,
-  ) : super(const ClientTodayState.initial()) {
+  ClientTodayBloc(this._watchTodaySession)
+    : super(const ClientTodayState.initial()) {
     on<ClientTodayEvent>((event, emit) async {
       await switch (event) {
         ClientTodayStarted(:final clientId) => _onStarted(clientId, emit),

@@ -84,13 +84,15 @@ class _RosterView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  InviteError(:final failure) => Text('Error: ${failure.message}'),
+                  InviteError(:final failure) => Text(
+                    'Error: ${failure.message}',
+                  ),
                 };
               },
             ),
             actions: [
               TextButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => Navigator.pop(dialogContext),
                 child: const Text('Close'),
               ),
             ],
@@ -108,47 +110,47 @@ class _RosterView extends StatelessWidget {
         builder: (context, state) {
           return switch (state) {
             RosterInitial() ||
-            RosterLoading() =>
-              const Center(child: CircularProgressIndicator()),
-            RosterError(:final failure) =>
-              Center(child: Text('Error loading roster: ${failure.message}')),
+            RosterLoading() => const Center(child: CircularProgressIndicator()),
+            RosterError(:final failure) => Center(
+              child: Text('Error loading roster: ${failure.message}'),
+            ),
             RosterLoaded(:final clients) => () {
-                if (clients.isEmpty) {
-                  return const Center(
-                    child: Text('No clients yet. Invite someone!'),
-                  );
-                }
-                return ListView.builder(
-                  itemCount: clients.length,
-                  itemBuilder: (context, index) {
-                    final client = clients[index];
-                    return ListTile(
-                      leading: CircleAvatar(
-                        backgroundImage: client.user.avatarUrl != null
-                            ? NetworkImage(client.user.avatarUrl!)
-                            : null,
-                        child: client.user.avatarUrl == null
-                            ? Text(client.user.fullName[0])
-                            : null,
-                      ),
-                      title: Text(client.user.fullName),
-                      subtitle: Text(
-                        client.activeProgramName ?? 'No Active Program',
-                      ),
-                      trailing: client.latestReadinessScore != null
-                          ? Chip(
-                              label: Text(
-                                'Readiness: ${client.latestReadinessScore}',
-                              ),
-                            )
-                          : const SizedBox.shrink(),
-                      onTap: () {
-                        // Navigate to Client Detail Page (to be built or connected via go_router)
-                      },
-                    );
-                  },
+              if (clients.isEmpty) {
+                return const Center(
+                  child: Text('No clients yet. Invite someone!'),
                 );
-              }(),
+              }
+              return ListView.builder(
+                itemCount: clients.length,
+                itemBuilder: (context, index) {
+                  final client = clients[index];
+                  return ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: client.user.avatarUrl != null
+                          ? NetworkImage(client.user.avatarUrl!)
+                          : null,
+                      child: client.user.avatarUrl == null
+                          ? Text(client.user.fullName[0])
+                          : null,
+                    ),
+                    title: Text(client.user.fullName),
+                    subtitle: Text(
+                      client.activeProgramName ?? 'No Active Program',
+                    ),
+                    trailing: client.latestReadinessScore != null
+                        ? Chip(
+                            label: Text(
+                              'Readiness: ${client.latestReadinessScore}',
+                            ),
+                          )
+                        : const SizedBox.shrink(),
+                    onTap: () {
+                      // Navigate to Client Detail Page (to be built or connected via go_router)
+                    },
+                  );
+                },
+              );
+            }(),
           };
         },
       ),

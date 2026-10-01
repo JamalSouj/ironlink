@@ -33,8 +33,9 @@ class ClientProgressionsBloc
         (failure) => ClientProgressionsState.error(failure),
         (progressions) => ClientProgressionsState.loaded(progressions),
       ),
-      onError: (error, _) =>
-          ClientProgressionsState.error(ServerFailure(message: error.toString())),
+      onError: (error, _) => ClientProgressionsState.error(
+        ServerFailure(message: error.toString()),
+      ),
     );
   }
 }

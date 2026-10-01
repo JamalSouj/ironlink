@@ -16,21 +16,22 @@ abstract class SubscriptionModel with _$SubscriptionModel {
     DateTime? currentPeriodEnd,
   }) = _SubscriptionModel;
 
-  factory SubscriptionModel.fromJson(Map<String, dynamic> json) => _$SubscriptionModelFromJson(json);
+  factory SubscriptionModel.fromJson(Map<String, dynamic> json) =>
+      _$SubscriptionModelFromJson(json);
 
   Subscription toDomain() => Subscription(
-        id: id,
-        coachId: coachId,
-        plan: plan,
-        status: status,
-        currentPeriodEnd: currentPeriodEnd,
-      );
+    id: id,
+    coachId: coachId,
+    plan: plan,
+    status: status,
+    currentPeriodEnd: currentPeriodEnd,
+  );
 
   static SubscriptionModel fromDomain(Subscription entity) => SubscriptionModel(
-        id: entity.id,
-        coachId: entity.coachId,
-        plan: entity.plan,
-        status: entity.status,
-        currentPeriodEnd: entity.currentPeriodEnd,
-      );
+    id: entity.id,
+    coachId: entity.coachId,
+    plan: entity.plan,
+    status: entity.status,
+    currentPeriodEnd: entity.currentPeriodEnd,
+  );
 }

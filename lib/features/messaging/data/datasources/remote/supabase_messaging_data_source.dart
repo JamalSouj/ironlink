@@ -15,24 +15,33 @@ class SupabaseMessagingDataSource {
         .order('created_at', ascending: true)
         .map((data) {
           // Filter in memory for simplicity (Supabase stream filter is limited to eq on primary key usually, or realtime RLS covers it but we still want just this peer)
-          final filtered = data.where((row) => 
-            (row['sender_id'] == currentUserId && row['recipient_id'] == peerId) ||
-            (row['sender_id'] == peerId && row['recipient_id'] == currentUserId)
+          final filtered = data.where(
+            (row) =>
+                (row['sender_id'] == currentUserId &&
+                    row['recipient_id'] == peerId) ||
+                (row['sender_id'] == peerId &&
+                    row['recipient_id'] == currentUserId),
           );
           return filtered.map((json) => MessageModel.fromJson(json)).toList();
         });
   }
 
   Stream<int> watchUnreadCount(String currentUserId) {
-    return _client
-        .from('messages')
-        .stream(primaryKey: ['id'])
-        .map((data) {
-          return data.where((row) => row['recipient_id'] == currentUserId && row['read_at'] == null).length;
-        });
+    return _client.from('messages').stream(primaryKey: ['id']).map((data) {
+      return data
+          .where(
+            (row) =>
+                row['recipient_id'] == currentUserId && row['read_at'] == null,
+          )
+          .length;
+    });
   }
 
-  Future<void> sendMessage(String senderId, String recipientId, String body) async {
+  Future<void> sendMessage(
+    String senderId,
+    String recipientId,
+    String body,
+  ) async {
     try {
       await _client.from('messages').insert({
         'sender_id': senderId,

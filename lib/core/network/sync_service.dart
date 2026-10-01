@@ -17,7 +17,7 @@ class SyncService {
 
   Future<void> _init() async {
     await Hive.initFlutter();
-    
+
     // Check initial status
     final result = await Connectivity().checkConnectivity();
     _updateOnlineStatus(result);
@@ -29,7 +29,7 @@ class SyncService {
   void _updateOnlineStatus(List<ConnectivityResult> results) {
     // If the list of results contains none, we are offline
     final isOnlineNow = !results.contains(ConnectivityResult.none);
-    
+
     if (!_isOnline && isOnlineNow) {
       _isOnline = true;
       _flushAll();

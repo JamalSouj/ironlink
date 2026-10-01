@@ -7,16 +7,22 @@ import 'package:ironlink/features/messaging/domain/repositories/messaging_reposi
 class MarkThreadAsReadParams {
   final String currentUserId;
   final String peerId;
-  const MarkThreadAsReadParams({required this.currentUserId, required this.peerId});
+  const MarkThreadAsReadParams({
+    required this.currentUserId,
+    required this.peerId,
+  });
 }
 
 @injectable
 class MarkThreadAsRead extends UseCase<Unit, MarkThreadAsReadParams> {
   MarkThreadAsRead(this._repository);
   final MessagingRepository _repository;
-  
+
   @override
   Future<Either<Failure, Unit>> call(MarkThreadAsReadParams params) async {
-    return await _repository.markThreadAsRead(params.currentUserId, params.peerId);
+    return await _repository.markThreadAsRead(
+      params.currentUserId,
+      params.peerId,
+    );
   }
 }

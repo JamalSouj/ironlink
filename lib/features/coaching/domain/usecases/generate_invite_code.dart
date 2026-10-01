@@ -17,23 +17,28 @@ class GenerateInviteCode extends UseCase<String, String> {
     // 1. Check current active subscription
     final subResult = await _checkSubscriptionStatus(params);
     final subscription = subResult.getOrElse((_) => null);
-    
+
     // 2. Check current client count
     final countResult = await _repository.getClientCount(params);
     if (countResult.isLeft()) {
-      return Left(countResult.fold((l) => l, (r) => throw UnimplementedError()));
+      return Left(
+        countResult.fold((l) => l, (r) => throw UnimplementedError()),
+      );
     }
-    
+
     final clientCount = countResult.getOrElse((_) => 0);
-    
+
     // 3. Apply limit logic: Starter tier (no active pro sub) -> max 3 clients
     final isPro = subscription?.isPro ?? false;
     if (!isPro && clientCount >= 3) {
       return const Left(
-        ServerFailure(message: 'Client limit reached. Please upgrade to Pro to add more clients.'),
+        ServerFailure(
+          message:
+              'Client limit reached. Please upgrade to Pro to add more clients.',
+        ),
       );
     }
-    
+
     return _repository.generateInviteCode(params);
   }
 }

@@ -16,7 +16,8 @@ class UpdateProgressionParams {
 }
 
 @injectable
-class UpdateClientProgressionStatus extends UseCase<Unit, UpdateProgressionParams> {
+class UpdateClientProgressionStatus
+    extends UseCase<Unit, UpdateProgressionParams> {
   UpdateClientProgressionStatus(this._repository);
   final ProgressionsRepository _repository;
 

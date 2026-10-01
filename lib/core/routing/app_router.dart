@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ironlink/core/routing/router_notifier.dart';
 import 'package:ironlink/features/auth/presentation/bloc/auth_bloc.dart';
@@ -8,10 +9,14 @@ import 'package:ironlink/features/auth/presentation/pages/coach_sign_up_page.dar
 import 'package:ironlink/features/auth/presentation/pages/login_page.dart';
 import 'package:ironlink/features/billing/presentation/pages/billing_page.dart';
 import 'package:ironlink/features/coaching/presentation/pages/client_shell_page.dart';
+import 'package:ironlink/features/coaching/presentation/pages/coach_dashboard_page.dart';
 import 'package:ironlink/features/coaching/presentation/pages/coach_shell_page.dart';
 import 'package:ironlink/features/coaching/presentation/pages/roster_page.dart';
+import 'package:ironlink/features/exercises/presentation/pages/exercises_page.dart';
+import 'package:ironlink/features/messaging/presentation/pages/client_messages_page.dart';
 import 'package:ironlink/features/messaging/presentation/pages/conversations_list_page.dart';
 import 'package:ironlink/features/programs/presentation/pages/client_today_page.dart';
+import 'package:ironlink/features/programs/presentation/pages/program_builder_page.dart';
 import 'package:ironlink/features/progressions/presentation/pages/client_progressions_page.dart';
 
 /// Central router configuration.
@@ -96,11 +101,7 @@ class AppRouter {
         GoRoute(
           path: '/coach/dashboard',
           name: 'coach-dashboard',
-          builder: (context, _) => const _PlaceholderPage(
-            icon: Icons.dashboard_rounded,
-            label: 'Coach Dashboard',
-            subtitle: 'Dashboard feature goes here.',
-          ),
+          builder: (context, _) => const CoachDashboardPage(),
         ),
         GoRoute(
           path: '/coach/clients',
@@ -117,6 +118,19 @@ class AppRouter {
           name: 'coach-billing',
           builder: (context, _) => const BillingPage(),
         ),
+        GoRoute(
+          path: '/coach/exercises',
+          name: 'coach-exercises',
+          builder: (context, _) => const ExercisesPage(),
+        ),
+        GoRoute(
+          path: '/coach/program-builder/:id',
+          name: 'program-builder',
+          builder: (context, state) {
+            final id = state.pathParameters['id']!;
+            return ProgramBuilderPage(programId: id);
+          },
+        ),
       ],
     ),
 
@@ -127,60 +141,29 @@ class AppRouter {
         GoRoute(
           path: '/client/today',
           name: 'client-today',
-          builder: (context, _) => const ClientTodayPage(clientId: '',),
+          builder: (context, _) {
+            final authState = context.read<AuthBloc>().state;
+            final clientId =
+                authState is AuthenticatedClient ? authState.user.id : '';
+            return ClientTodayPage(clientId: clientId);
+          },
         ),
         GoRoute(
           path: '/client/progressions',
           name: 'client-progressions',
-          builder: (context, _) => const ClientProgressionsPage(clientId: '',),
+          builder: (context, _) {
+            final authState = context.read<AuthBloc>().state;
+            final clientId =
+                authState is AuthenticatedClient ? authState.user.id : '';
+            return ClientProgressionsPage(clientId: clientId);
+          },
         ),
         GoRoute(
           path: '/client/messages',
           name: 'client-messages',
-          builder: (context, _) => const _PlaceholderPage( // They only talk to the coach, could directly go to ChatThreadPage if we look up the coachId
-            icon: Icons.message,
-            label: 'Coach Messages',
-            subtitle: 'Chat Thread here.',
-          ),
+          builder: (context, _) => const ClientMessagesPage(),
         ),
       ],
     ),
   ];
 }
-
-// ── Placeholder page — remove when real shells are implemented ───────────────
-
-class _PlaceholderPage extends StatelessWidget {
-  const _PlaceholderPage({
-    required this.icon,
-    required this.label,
-    required this.subtitle,
-  });
-
-  final IconData icon;
-  final String label;
-  final String subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, size: 64, color: colorScheme.primary),
-            const SizedBox(height: 16),
-            Text(label, style: Theme.of(context).textTheme.headlineSmall),
-            const SizedBox(height: 8),
-            Text(
-              subtitle,
-              style: TextStyle(color: colorScheme.onSurfaceVariant),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-

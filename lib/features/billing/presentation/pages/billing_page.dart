@@ -30,13 +30,16 @@ class BillingPage extends StatelessWidget {
     }
 
     if (currentUser == null) {
-      return const Scaffold(body: Center(child: Text('Not logged in as a coach.')));
+      return const Scaffold(
+        body: Center(child: Text('Not logged in as a coach.')),
+      );
     }
 
     final coachId = currentUser.id;
 
     return BlocProvider(
-      create: (context) => getIt<BillingBloc>()..add(BillingEvent.started(coachId: coachId)),
+      create: (context) =>
+          getIt<BillingBloc>()..add(BillingEvent.started(coachId: coachId)),
       child: Scaffold(
         appBar: AppBar(title: const Text('Billing & Subscription')),
         body: BlocConsumer<BillingBloc, BillingState>(
@@ -44,13 +47,19 @@ class BillingPage extends StatelessWidget {
             if (state is BillingCheckoutReady) {
               _launchUrl(state.checkoutUrl);
             } else if (state is BillingError) {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: ${state.failure.message}')));
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Error: ${state.failure.message}')),
+              );
             }
           },
           builder: (context, state) {
             return switch (state) {
-              BillingInitial() || BillingLoading() => const Center(child: CircularProgressIndicator()),
-              BillingCheckoutLoading() => const Center(child: CircularProgressIndicator(color: Colors.blue)),
+              BillingInitial() || BillingLoading() => const Center(
+                child: CircularProgressIndicator(),
+              ),
+              BillingCheckoutLoading() => const Center(
+                child: CircularProgressIndicator(color: Colors.blue),
+              ),
               BillingLoaded(:final subscription) => () {
                 final isPro = subscription?.isPro ?? false;
                 final planName = isPro ? 'Pro' : 'Starter (Free)';
@@ -67,9 +76,17 @@ class BillingPage extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Current Plan: $planName', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                              Text(
+                                'Current Plan: $planName',
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                               const SizedBox(height: 8),
-                              Text('Status: ${subscription?.status ?? 'active'}'),
+                              Text(
+                                'Status: ${subscription?.status ?? 'active'}',
+                              ),
                               const SizedBox(height: 8),
                               Text('Clients allowed: $clientsLimit'),
                             ],
@@ -81,21 +98,30 @@ class BillingPage extends StatelessWidget {
                         ElevatedButton(
                           onPressed: () {
                             context.read<BillingBloc>().add(
-                                  BillingEvent.checkoutRequested(
-                                    priceId: dotenv.env[AppConstants.envStripeProPriceId] ?? '',
-                                    redirectUrl: 'ironlink://billing',
-                                  ),
-                                );
+                              BillingEvent.checkoutRequested(
+                                priceId:
+                                    dotenv.env[AppConstants
+                                        .envStripeProPriceId] ??
+                                    '',
+                                redirectUrl: 'ironlink://billing',
+                              ),
+                            );
                           },
-                          style: ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 50)),
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(double.infinity, 50),
+                          ),
                           child: const Text('Upgrade to Pro'),
                         ),
                       if (isPro)
                         OutlinedButton(
                           onPressed: () {
-                            _launchUrl('https://billing.stripe.com/p/login/test_portal');
+                            _launchUrl(
+                              'https://billing.stripe.com/p/login/test_portal',
+                            );
                           },
-                          style: OutlinedButton.styleFrom(minimumSize: const Size(double.infinity, 50)),
+                          style: OutlinedButton.styleFrom(
+                            minimumSize: const Size(double.infinity, 50),
+                          ),
                           child: const Text('Manage Billing (Stripe Portal)'),
                         ),
                     ],

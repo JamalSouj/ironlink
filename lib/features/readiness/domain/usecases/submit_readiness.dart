@@ -9,7 +9,7 @@ import 'package:ironlink/features/readiness/domain/repositories/readiness_reposi
 class SubmitReadiness extends UseCase<Unit, ReadinessLog> {
   SubmitReadiness(this._repository);
   final ReadinessRepository _repository;
-  
+
   @override
   Future<Either<Failure, Unit>> call(ReadinessLog params) async {
     return await _repository.submitReadiness(params);

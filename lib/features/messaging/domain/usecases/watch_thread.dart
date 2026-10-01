@@ -12,10 +12,11 @@ class WatchThreadParams {
 }
 
 @injectable
-class WatchThread extends StreamUseCase<List<MessageEntity>, WatchThreadParams> {
+class WatchThread
+    extends StreamUseCase<List<MessageEntity>, WatchThreadParams> {
   WatchThread(this._repository);
   final MessagingRepository _repository;
-  
+
   @override
   Stream<Either<Failure, List<MessageEntity>>> call(WatchThreadParams params) {
     return _repository.watchThread(params.currentUserId, params.peerId);

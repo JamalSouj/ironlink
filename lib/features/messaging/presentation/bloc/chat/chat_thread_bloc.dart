@@ -11,11 +11,8 @@ import 'package:ironlink/features/messaging/presentation/bloc/chat/chat_thread_s
 
 @injectable
 class ChatThreadBloc extends Bloc<ChatThreadEvent, ChatThreadState> {
-  ChatThreadBloc(
-    this._watchThread,
-    this._sendMessage,
-    this._markThreadAsRead,
-  ) : super(const ChatThreadState.initial()) {
+  ChatThreadBloc(this._watchThread, this._sendMessage, this._markThreadAsRead)
+    : super(const ChatThreadState.initial()) {
     on<ChatThreadEvent>((event, emit) async {
       switch (event) {
         case final ChatThreadStarted e:
@@ -30,23 +27,42 @@ class ChatThreadBloc extends Bloc<ChatThreadEvent, ChatThreadState> {
   final SendMessage _sendMessage;
   final MarkThreadAsRead _markThreadAsRead;
 
-  Future<void> _onStarted(ChatThreadStarted e, Emitter<ChatThreadState> emit) async {
+  Future<void> _onStarted(
+    ChatThreadStarted e,
+    Emitter<ChatThreadState> emit,
+  ) async {
     emit(const ChatThreadState.loading());
 
     await emit.forEach<Either<Failure, List<MessageEntity>>>(
-      _watchThread(WatchThreadParams(currentUserId: e.currentUserId, peerId: e.peerId)),
-      onData: (either) => either.fold(
-        (f) => ChatThreadState.error(failure: f),
-        (messages) {
-          _markThreadAsRead(MarkThreadAsReadParams(currentUserId: e.currentUserId, peerId: e.peerId));
-          return ChatThreadState.loaded(messages: messages);
-        },
+      _watchThread(
+        WatchThreadParams(currentUserId: e.currentUserId, peerId: e.peerId),
       ),
-      onError: (error, _) => ChatThreadState.error(failure: ServerFailure(message: error.toString())),
+      onData: (either) =>
+          either.fold((f) => ChatThreadState.error(failure: f), (messages) {
+            _markThreadAsRead(
+              MarkThreadAsReadParams(
+                currentUserId: e.currentUserId,
+                peerId: e.peerId,
+              ),
+            );
+            return ChatThreadState.loaded(messages: messages);
+          }),
+      onError: (error, _) => ChatThreadState.error(
+        failure: ServerFailure(message: error.toString()),
+      ),
     );
   }
 
-  Future<void> _onMessageSent(ChatThreadMessageSent e, Emitter<ChatThreadState> emit) async {
-    await _sendMessage(SendMessageParams(senderId: e.currentUserId, recipientId: e.peerId, body: e.body));
+  Future<void> _onMessageSent(
+    ChatThreadMessageSent e,
+    Emitter<ChatThreadState> emit,
+  ) async {
+    await _sendMessage(
+      SendMessageParams(
+        senderId: e.currentUserId,
+        recipientId: e.peerId,
+        body: e.body,
+      ),
+    );
   }
 }

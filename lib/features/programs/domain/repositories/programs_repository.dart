@@ -55,5 +55,9 @@ abstract class ProgramsRepository {
 
   Stream<Either<Failure, WorkoutSession?>> watchTodaySession(String clientId);
   Future<Either<Failure, Unit>> logSet(SetLog log);
-  Future<Either<Failure, Unit>> completeSession(String sessionId, int sessionRpe, int durationMinutes);
+  Future<Either<Failure, Unit>> completeSession(
+    String sessionId,
+    int sessionRpe,
+    int durationMinutes,
+  );
 }

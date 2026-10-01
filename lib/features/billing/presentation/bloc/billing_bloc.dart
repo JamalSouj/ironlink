@@ -10,10 +10,8 @@ import 'package:ironlink/features/billing/presentation/bloc/billing_state.dart';
 
 @injectable
 class BillingBloc extends Bloc<BillingEvent, BillingState> {
-  BillingBloc(
-    this._watchSubscriptionStatus,
-    this._createCheckoutSession,
-  ) : super(const BillingState.initial()) {
+  BillingBloc(this._watchSubscriptionStatus, this._createCheckoutSession)
+    : super(const BillingState.initial()) {
     on<BillingEvent>((event, emit) async {
       await switch (event) {
         BillingStarted() => _onStarted(event, emit),
@@ -25,10 +23,7 @@ class BillingBloc extends Bloc<BillingEvent, BillingState> {
   final WatchSubscriptionStatus _watchSubscriptionStatus;
   final CreateCheckoutSession _createCheckoutSession;
 
-  Future<void> _onStarted(
-    BillingStarted e,
-    Emitter<BillingState> emit,
-  ) async {
+  Future<void> _onStarted(BillingStarted e, Emitter<BillingState> emit) async {
     emit(const BillingState.loading());
     await emit.forEach<Either<Failure, Subscription?>>(
       _watchSubscriptionStatus(e.coachId),
@@ -36,9 +31,8 @@ class BillingBloc extends Bloc<BillingEvent, BillingState> {
         (failure) => BillingState.error(failure: failure),
         (subscription) => BillingState.loaded(subscription: subscription),
       ),
-      onError: (error, _) => BillingState.error(
-        failure: ServerFailure(message: error.toString()),
-      ),
+      onError: (error, _) =>
+          BillingState.error(failure: ServerFailure(message: error.toString())),
     );
   }
 

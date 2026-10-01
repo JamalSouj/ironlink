@@ -50,17 +50,20 @@ class ReadinessRepositoryImpl implements ReadinessRepository, SyncDelegate {
   }
 
   @override
-  Future<Either<Failure, ReadinessLog?>> checkTodayReadiness(String clientId) async {
+  Future<Either<Failure, ReadinessLog?>> checkTodayReadiness(
+    String clientId,
+  ) async {
     try {
       // If offline, check local queue first for today
       final queued = await _local.getQueuedSubmissions();
       final today = DateTime.now().toIso8601String().split('T').first;
       for (final q in queued) {
-        if (q.clientId == clientId && q.logDate.toIso8601String().split('T').first == today) {
+        if (q.clientId == clientId &&
+            q.logDate.toIso8601String().split('T').first == today) {
           return Right(q.toDomain());
         }
       }
-      
+
       if (!_syncService.isOnline) return const Right(null);
 
       final result = await _remote.checkTodayReadiness(clientId);

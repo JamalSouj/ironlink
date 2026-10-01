@@ -17,7 +17,10 @@ class UnreadBadgeBloc extends Bloc<UnreadBadgeEvent, UnreadBadgeState> {
 
   final WatchUnreadCount _watchUnreadCount;
 
-  Future<void> _onStarted(String currentUserId, Emitter<UnreadBadgeState> emit) async {
+  Future<void> _onStarted(
+    String currentUserId,
+    Emitter<UnreadBadgeState> emit,
+  ) async {
     await emit.forEach(
       _watchUnreadCount(currentUserId),
       onData: (either) => either.fold(

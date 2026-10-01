@@ -9,7 +9,7 @@ import 'package:ironlink/features/readiness/domain/repositories/readiness_reposi
 class CheckTodayReadiness extends UseCase<ReadinessLog?, String> {
   CheckTodayReadiness(this._repository);
   final ReadinessRepository _repository;
-  
+
   @override
   Future<Either<Failure, ReadinessLog?>> call(String params) async {
     return await _repository.checkTodayReadiness(params);

@@ -13,7 +13,10 @@ class BillingRepositoryImpl implements BillingRepository {
   final SupabaseBillingDataSource _remote;
 
   @override
-  Future<Either<Failure, String>> createCheckoutSession(String priceId, String redirectUrl) async {
+  Future<Either<Failure, String>> createCheckoutSession(
+    String priceId,
+    String redirectUrl,
+  ) async {
     try {
       final url = await _remote.createCheckoutSession(priceId, redirectUrl);
       return Right(url);
@@ -25,7 +28,9 @@ class BillingRepositoryImpl implements BillingRepository {
   }
 
   @override
-  Stream<Either<Failure, Subscription?>> watchSubscriptionStatus(String coachId) async* {
+  Stream<Either<Failure, Subscription?>> watchSubscriptionStatus(
+    String coachId,
+  ) async* {
     try {
       await for (final model in _remote.watchSubscriptionStatus(coachId)) {
         yield right<Failure, Subscription?>(model?.toDomain());
@@ -38,7 +43,9 @@ class BillingRepositoryImpl implements BillingRepository {
   }
 
   @override
-  Future<Either<Failure, Subscription?>> checkSubscriptionStatus(String coachId) async {
+  Future<Either<Failure, Subscription?>> checkSubscriptionStatus(
+    String coachId,
+  ) async {
     try {
       final model = await _remote.checkSubscriptionStatus(coachId);
       return Right(model?.toDomain());

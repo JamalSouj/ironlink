@@ -11,7 +11,7 @@ import 'package:ironlink/features/messaging/presentation/bloc/badge/unread_badge
 
 class CoachShellPage extends StatelessWidget {
   const CoachShellPage({super.key, required this.child});
-  
+
   final Widget child;
 
   int _calculateSelectedIndex(BuildContext context) {
@@ -53,14 +53,18 @@ class CoachShellPage extends StatelessWidget {
     }
 
     return BlocProvider(
-      create: (context) => getIt<UnreadBadgeBloc>()..add(UnreadBadgeEvent.started(currentUserId: currentUserId!)),
+      create: (context) =>
+          getIt<UnreadBadgeBloc>()
+            ..add(UnreadBadgeEvent.started(currentUserId: currentUserId!)),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('IronLink'),
           actions: [
             IconButton(
               icon: const Icon(Icons.logout),
-              onPressed: () => context.read<AuthBloc>().add(const AuthEvent.signOutRequested()),
+              onPressed: () => context.read<AuthBloc>().add(
+                const AuthEvent.signOutRequested(),
+              ),
             ),
           ],
         ),
@@ -72,8 +76,14 @@ class CoachShellPage extends StatelessWidget {
               onTap: (index) => _onItemTapped(index, context),
               type: BottomNavigationBarType.fixed,
               items: [
-                const BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: 'Dashboard'),
-                const BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Clients'),
+                const BottomNavigationBarItem(
+                  icon: Icon(Icons.dashboard),
+                  label: 'Dashboard',
+                ),
+                const BottomNavigationBarItem(
+                  icon: Icon(Icons.people),
+                  label: 'Clients',
+                ),
                 BottomNavigationBarItem(
                   icon: BlocBuilder<UnreadBadgeBloc, UnreadBadgeState>(
                     builder: (context, state) {
@@ -87,10 +97,13 @@ class CoachShellPage extends StatelessWidget {
                   ),
                   label: 'Messages',
                 ),
-                const BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Billing'),
+                const BottomNavigationBarItem(
+                  icon: Icon(Icons.settings),
+                  label: 'Billing',
+                ),
               ],
             );
-          }
+          },
         ),
       ),
     );

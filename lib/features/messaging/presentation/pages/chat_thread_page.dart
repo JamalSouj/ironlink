@@ -36,12 +36,12 @@ class _ChatThreadPageState extends State<ChatThreadPage> {
   void _sendMessage(BuildContext context) {
     if (_controller.text.trim().isEmpty) return;
     context.read<ChatThreadBloc>().add(
-          ChatThreadEvent.messageSent(
-            currentUserId: widget.currentUserId,
-            peerId: widget.peerId,
-            body: _controller.text.trim(),
-          ),
-        );
+      ChatThreadEvent.messageSent(
+        currentUserId: widget.currentUserId,
+        peerId: widget.peerId,
+        body: _controller.text.trim(),
+      ),
+    );
     _controller.clear();
   }
 
@@ -49,8 +49,12 @@ class _ChatThreadPageState extends State<ChatThreadPage> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt<ChatThreadBloc>()
-        ..add(ChatThreadEvent.started(
-            currentUserId: widget.currentUserId, peerId: widget.peerId)),
+        ..add(
+          ChatThreadEvent.started(
+            currentUserId: widget.currentUserId,
+            peerId: widget.peerId,
+          ),
+        ),
       child: Scaffold(
         appBar: AppBar(title: Text(widget.peerName)),
         body: Column(
@@ -59,7 +63,9 @@ class _ChatThreadPageState extends State<ChatThreadPage> {
               child: BlocBuilder<ChatThreadBloc, ChatThreadState>(
                 builder: (context, state) {
                   return switch (state) {
-                    ChatThreadLoading() => const Center(child: CircularProgressIndicator()),
+                    ChatThreadLoading() => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
                     ChatThreadLoaded(:final messages) => () {
                       if (messages.isEmpty) {
                         return const Center(child: Text('Say hi!'));
@@ -73,33 +79,52 @@ class _ChatThreadPageState extends State<ChatThreadPage> {
                           final msg = reversedMessages[index];
                           final isMe = msg.senderId == widget.currentUserId;
                           final theme = Theme.of(context).colorScheme;
-                          
+
                           return Align(
-                            alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
+                            alignment: isMe
+                                ? Alignment.centerRight
+                                : Alignment.centerLeft,
                             child: Container(
-                              margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                              margin: const EdgeInsets.symmetric(
+                                vertical: 4,
+                                horizontal: 8,
+                              ),
                               padding: const EdgeInsets.all(12),
                               decoration: BoxDecoration(
-                                color: isMe ? theme.primaryContainer : theme.surfaceContainerHighest,
+                                color: isMe
+                                    ? theme.primaryContainer
+                                    : theme.surfaceContainerHighest,
                                 borderRadius: BorderRadius.circular(16),
                               ),
                               child: Column(
-                                crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                                crossAxisAlignment: isMe
+                                    ? CrossAxisAlignment.end
+                                    : CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     msg.body ?? '',
                                     style: TextStyle(
-                                      color: isMe ? theme.onPrimaryContainer : theme.onSurfaceVariant,
+                                      color: isMe
+                                          ? theme.onPrimaryContainer
+                                          : theme.onSurfaceVariant,
                                     ),
                                   ),
                                   const SizedBox(height: 4),
                                   Text(
-                                    DateFormat.jm().format(msg.createdAt.toLocal()),
+                                    DateFormat.jm().format(
+                                      msg.createdAt.toLocal(),
+                                    ),
                                     style: TextStyle(
                                       fontSize: 10,
-                                      color: isMe ? theme.onPrimaryContainer.withValues(alpha: 0.7) : theme.onSurfaceVariant.withValues(alpha: 0.7),
+                                      color: isMe
+                                          ? theme.onPrimaryContainer.withValues(
+                                              alpha: 0.7,
+                                            )
+                                          : theme.onSurfaceVariant.withValues(
+                                              alpha: 0.7,
+                                            ),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -107,7 +132,9 @@ class _ChatThreadPageState extends State<ChatThreadPage> {
                         },
                       );
                     }(),
-                    ChatThreadError(:final failure) => Center(child: Text('Error: ${failure.message}')),
+                    ChatThreadError(:final failure) => Center(
+                      child: Text('Error: ${failure.message}'),
+                    ),
                     _ => const SizedBox.shrink(),
                   };
                 },

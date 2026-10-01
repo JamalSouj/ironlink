@@ -8,10 +8,8 @@ import 'package:ironlink/features/readiness/presentation/bloc/readiness_state.da
 
 @injectable
 class ReadinessBloc extends Bloc<ReadinessEvent, ReadinessState> {
-  ReadinessBloc(
-    this._checkTodayReadiness,
-    this._submitReadiness,
-  ) : super(const ReadinessState.initial()) {
+  ReadinessBloc(this._checkTodayReadiness, this._submitReadiness)
+    : super(const ReadinessState.initial()) {
     on<ReadinessEvent>((event, emit) async {
       await switch (event) {
         ReadinessStarted(:final clientId) => _onStarted(clientId, emit),
@@ -23,23 +21,17 @@ class ReadinessBloc extends Bloc<ReadinessEvent, ReadinessState> {
   final CheckTodayReadiness _checkTodayReadiness;
   final SubmitReadiness _submitReadiness;
 
-  Future<void> _onStarted(
-    String clientId,
-    Emitter<ReadinessState> emit,
-  ) async {
+  Future<void> _onStarted(String clientId, Emitter<ReadinessState> emit) async {
     emit(const ReadinessState.loading());
     final result = await _checkTodayReadiness(clientId);
-    
-    result.fold(
-      (f) => emit(ReadinessState.error(failure: f)),
-      (log) {
-        if (log == null) {
-          emit(const ReadinessState.needsSubmission());
-        } else {
-          emit(const ReadinessState.completed());
-        }
-      },
-    );
+
+    result.fold((f) => emit(ReadinessState.error(failure: f)), (log) {
+      if (log == null) {
+        emit(const ReadinessState.needsSubmission());
+      } else {
+        emit(const ReadinessState.completed());
+      }
+    });
   }
 
   Future<void> _onSubmitted(
@@ -47,7 +39,7 @@ class ReadinessBloc extends Bloc<ReadinessEvent, ReadinessState> {
     Emitter<ReadinessState> emit,
   ) async {
     emit(const ReadinessState.loading());
-    
+
     // Simple readiness score calculation (out of 10)
     // 5 = great, 1 = terrible for each. 15 points total.
     // Score = (sleep + soreness + stress) / 15 * 10
@@ -65,7 +57,7 @@ class ReadinessBloc extends Bloc<ReadinessEvent, ReadinessState> {
     );
 
     final result = await _submitReadiness(log);
-    
+
     result.fold(
       (f) => emit(ReadinessState.error(failure: f)),
       (_) => emit(const ReadinessState.completed()),

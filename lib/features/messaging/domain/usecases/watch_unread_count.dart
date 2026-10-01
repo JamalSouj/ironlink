@@ -8,7 +8,7 @@ import 'package:ironlink/features/messaging/domain/repositories/messaging_reposi
 class WatchUnreadCount extends StreamUseCase<int, String> {
   WatchUnreadCount(this._repository);
   final MessagingRepository _repository;
-  
+
   @override
   Stream<Either<Failure, int>> call(String params) {
     return _repository.watchUnreadCount(params);

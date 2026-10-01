@@ -13,27 +13,42 @@ class MessagingRepositoryImpl implements MessagingRepository {
   final SupabaseMessagingDataSource _remote;
 
   @override
-  Stream<Either<Failure, List<MessageEntity>>> watchThread(String currentUserId, String peerId) {
-    return _remote.watchThread(currentUserId, peerId).map((models) {
-      return right<Failure, List<MessageEntity>>(models.map((m) => m.toDomain()).toList());
-    }).handleError((dynamic error) {
-      if (error is ServerException) {
-        return left<Failure, List<MessageEntity>>(ServerFailure(message: error.message));
-      }
-      return left<Failure, List<MessageEntity>>(ServerFailure(message: error.toString()));
-    });
+  Stream<Either<Failure, List<MessageEntity>>> watchThread(
+    String currentUserId,
+    String peerId,
+  ) {
+    return _remote
+        .watchThread(currentUserId, peerId)
+        .map((models) {
+          return right<Failure, List<MessageEntity>>(
+            models.map((m) => m.toDomain()).toList(),
+          );
+        })
+        .handleError((dynamic error) {
+          if (error is ServerException) {
+            return left<Failure, List<MessageEntity>>(
+              ServerFailure(message: error.message),
+            );
+          }
+          return left<Failure, List<MessageEntity>>(
+            ServerFailure(message: error.toString()),
+          );
+        });
   }
 
   @override
   Stream<Either<Failure, int>> watchUnreadCount(String currentUserId) {
-    return _remote.watchUnreadCount(currentUserId).map((count) {
-      return right<Failure, int>(count);
-    }).handleError((dynamic error) {
-      if (error is ServerException) {
-        return left<Failure, int>(ServerFailure(message: error.message));
-      }
-      return left<Failure, int>(ServerFailure(message: error.toString()));
-    });
+    return _remote
+        .watchUnreadCount(currentUserId)
+        .map((count) {
+          return right<Failure, int>(count);
+        })
+        .handleError((dynamic error) {
+          if (error is ServerException) {
+            return left<Failure, int>(ServerFailure(message: error.message));
+          }
+          return left<Failure, int>(ServerFailure(message: error.toString()));
+        });
   }
 
   @override
@@ -53,7 +68,10 @@ class MessagingRepositoryImpl implements MessagingRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> markThreadAsRead(String currentUserId, String peerId) async {
+  Future<Either<Failure, Unit>> markThreadAsRead(
+    String currentUserId,
+    String peerId,
+  ) async {
     try {
       await _remote.markThreadAsRead(currentUserId, peerId);
       return const Right(unit);

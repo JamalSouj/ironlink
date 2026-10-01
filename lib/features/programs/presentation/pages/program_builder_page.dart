@@ -43,23 +43,23 @@ class ProgramBuilderPage extends StatelessWidget {
         body: BlocBuilder<ProgramBuilderBloc, ProgramBuilderState>(
           builder: (context, state) {
             return switch (state) {
-              ProgramBuilderInitial() ||
-              ProgramBuilderLoading() =>
+              ProgramBuilderInitial() || ProgramBuilderLoading() =>
                 const Center(child: CircularProgressIndicator()),
-              ProgramBuilderError(:final failure) =>
-                Center(child: Text('Error: ${failure.message}')),
+              ProgramBuilderError(:final failure) => Center(
+                child: Text('Error: ${failure.message}'),
+              ),
               ProgramBuilderLoaded(:final blocks) => () {
-                  if (blocks.isEmpty) {
-                    return const Center(child: Text('No blocks found. Add one!'));
-                  }
-                  return ListView.builder(
-                    itemCount: blocks.length,
-                    itemBuilder: (context, index) {
-                      final block = blocks[index];
-                      return _ProgramBlockCard(block: block);
-                    },
-                  );
-                }(),
+                if (blocks.isEmpty) {
+                  return const Center(child: Text('No blocks found. Add one!'));
+                }
+                return ListView.builder(
+                  itemCount: blocks.length,
+                  itemBuilder: (context, index) {
+                    final block = blocks[index];
+                    return _ProgramBlockCard(block: block);
+                  },
+                );
+              }(),
             };
           },
         ),

@@ -15,4 +15,3 @@ sealed class BillingState with _$BillingState {
       BillingCheckoutReady;
   const factory BillingState.error({required Failure failure}) = BillingError;
 }
-

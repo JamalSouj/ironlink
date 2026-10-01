@@ -5,6 +5,7 @@ import 'package:ironlink/core/error/failures.dart';
 import 'package:ironlink/features/coaching/data/datasources/remote/supabase_coaching_data_source.dart';
 import 'package:ironlink/features/coaching/domain/entities/client_summary.dart';
 import 'package:ironlink/features/coaching/domain/repositories/coaching_repository.dart';
+import 'package:rxdart/rxdart.dart';
 
 @LazySingleton(as: CoachingRepository)
 class CoachingRepositoryImpl implements CoachingRepository {
@@ -16,19 +17,17 @@ class CoachingRepositoryImpl implements CoachingRepository {
   Stream<Either<Failure, List<ClientSummary>>> watchMyClients(String coachId) {
     return _dataSource
         .watchMyClients(coachId)
-        .map((models) {
-          return right<Failure, List<ClientSummary>>(models);
-        })
-        .handleError((Object error) {
-          if (error is ServerException) {
-            return left<Failure, List<ClientSummary>>(
-              ServerFailure(message: error.message),
-            );
-          }
-          return left<Failure, List<ClientSummary>>(
-            ServerFailure(message: error.toString()),
-          );
-        });
+        .map((models) => right<Failure, List<ClientSummary>>(models))
+        .onErrorReturnWith((Object error, StackTrace stackTrace) {
+      if (error is ServerException) {
+        return left<Failure, List<ClientSummary>>(
+          ServerFailure(message: error.message),
+        );
+      }
+      return left<Failure, List<ClientSummary>>(
+        ServerFailure(message: error.toString()),
+      );
+    });
   }
 
   @override

@@ -25,7 +25,7 @@ class SupabaseReadinessDataSource {
           .eq('client_id', clientId)
           .eq('log_date', today)
           .maybeSingle();
-      
+
       if (result == null) return null;
       return ReadinessLogModel.fromJson(result);
     } catch (e) {

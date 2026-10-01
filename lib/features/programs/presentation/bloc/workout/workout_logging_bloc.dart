@@ -6,11 +6,10 @@ import 'package:ironlink/features/programs/presentation/bloc/workout/workout_log
 import 'package:ironlink/features/programs/presentation/bloc/workout/workout_logging_state.dart';
 
 @injectable
-class WorkoutLoggingBloc extends Bloc<WorkoutLoggingEvent, WorkoutLoggingState> {
-  WorkoutLoggingBloc(
-    this._logSet,
-    this._completeSession,
-  ) : super(const WorkoutLoggingState.initial()) {
+class WorkoutLoggingBloc
+    extends Bloc<WorkoutLoggingEvent, WorkoutLoggingState> {
+  WorkoutLoggingBloc(this._logSet, this._completeSession)
+    : super(const WorkoutLoggingState.initial()) {
     on<WorkoutLoggingEvent>((event, emit) async {
       switch (event) {
         case WorkoutLoggingStarted():
@@ -38,7 +37,7 @@ class WorkoutLoggingBloc extends Bloc<WorkoutLoggingEvent, WorkoutLoggingState> 
     Emitter<WorkoutLoggingState> emit,
   ) async {
     emit(const WorkoutLoggingState.submitting());
-    
+
     final result = await _completeSession(
       CompleteSessionParams(
         sessionId: e.sessionId,
@@ -47,12 +46,9 @@ class WorkoutLoggingBloc extends Bloc<WorkoutLoggingEvent, WorkoutLoggingState> 
       ),
     );
 
-    result.fold(
-      (f) => emit(WorkoutLoggingState.error(failure: f)),
-      (_) {
-        // We will call the progression logic here later
-        emit(const WorkoutLoggingState.completed(unlockedLevels: []));
-      },
-    );
+    result.fold((f) => emit(WorkoutLoggingState.error(failure: f)), (_) {
+      // We will call the progression logic here later
+      emit(const WorkoutLoggingState.completed(unlockedLevels: []));
+    });
   }
 }

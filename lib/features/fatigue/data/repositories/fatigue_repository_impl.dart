@@ -21,9 +21,13 @@ class FatigueRepositoryImpl implements FatigueRepository {
       }
     } catch (error) {
       if (error is ServerException) {
-        yield left<Failure, List<TrainingLoadPoint>>(ServerFailure(message: error.message));
+        yield left<Failure, List<TrainingLoadPoint>>(
+          ServerFailure(message: error.message),
+        );
       } else {
-        yield left<Failure, List<TrainingLoadPoint>>(ServerFailure(message: error.toString()));
+        yield left<Failure, List<TrainingLoadPoint>>(
+          ServerFailure(message: error.toString()),
+        );
       }
     }
   }
