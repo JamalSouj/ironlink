@@ -59,8 +59,8 @@ class _ProgressionBuilderPageState extends State<ProgressionBuilderPage> {
                 children: [
                   _ProgressionNode(
                     levelNumber: index + 1,
-                    name: level['name'],
-                    criteria: level['criteria'],
+                    name: level['name'] as String,
+                    criteria: level['criteria'] as String,
                     colors: colors,
                     textTheme: textTheme,
                   ),
