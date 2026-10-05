@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
         email: _emailCtrl.text.trim(),
         password: _passwordCtrl.text,
       ),
-    );
+    );  
   }
 
   @override

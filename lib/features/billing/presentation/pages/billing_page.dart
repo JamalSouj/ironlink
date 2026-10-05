@@ -1,137 +1,93 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:ironlink/core/di/injection.dart';
-import 'package:ironlink/core/utils/constants.dart';
-import 'package:ironlink/features/auth/domain/entities/auth_user.dart';
-import 'package:ironlink/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:ironlink/features/auth/presentation/bloc/auth_state.dart';
-import 'package:ironlink/features/billing/presentation/bloc/billing_bloc.dart';
-import 'package:ironlink/features/billing/presentation/bloc/billing_event.dart';
-import 'package:ironlink/features/billing/presentation/bloc/billing_state.dart';
-import 'package:url_launcher/url_launcher.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_text_styles.dart';
 
 class BillingPage extends StatelessWidget {
-  const BillingPage({super.key});
-
-  Future<void> _launchUrl(String urlString) async {
-    final url = Uri.parse(urlString);
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
-    }
-  }
+  const BillingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final authState = context.read<AuthBloc>().state;
-    AuthUser? currentUser;
-    if (authState is AuthenticatedCoach) {
-      currentUser = authState.user;
-    }
+    final colors = Theme.of(context).extension<AppColors>()!;
+    final textTheme = Theme.of(context).textTheme;
 
-    if (currentUser == null) {
-      return const Scaffold(
-        body: Center(child: Text('Not logged in as a coach.')),
-      );
-    }
-
-    final coachId = currentUser.id;
-
-    return BlocProvider(
-      create: (context) =>
-          getIt<BillingBloc>()..add(BillingEvent.started(coachId: coachId)),
-      child: Scaffold(
-        appBar: AppBar(title: const Text('Billing & Subscription')),
-        body: BlocConsumer<BillingBloc, BillingState>(
-          listener: (context, state) {
-            if (state is BillingCheckoutReady) {
-              _launchUrl(state.checkoutUrl);
-            } else if (state is BillingError) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Error: ${state.failure.message}')),
-              );
-            }
-          },
-          builder: (context, state) {
-            return switch (state) {
-              BillingInitial() || BillingLoading() => const Center(
-                child: CircularProgressIndicator(),
-              ),
-              BillingCheckoutLoading() => const Center(
-                child: CircularProgressIndicator(color: Colors.blue),
-              ),
-              BillingLoaded(:final subscription) => () {
-                final isPro = subscription?.isPro ?? false;
-                final planName = isPro ? 'Pro' : 'Starter (Free)';
-                final clientsLimit = isPro ? 'Unlimited' : '3 max';
-
-                return Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Current Plan: $planName',
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              Text(
-                                'Status: ${subscription?.status ?? 'active'}',
-                              ),
-                              const SizedBox(height: 8),
-                              Text('Clients allowed: $clientsLimit'),
-                            ],
-                          ),
-                        ),
+    return Scaffold(
+      backgroundColor: colors.background, // Quiet, plain background
+      appBar: AppBar(
+        title: const Text('Settings & Billing'),
+        elevation: 0,
+      ),
+      body: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+        children: [
+          Text('Subscription', style: textTheme.labelLarge),
+          const SizedBox(height: 12),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: colors.surface1,
+              border: Border.all(color: colors.surface2, width: 1),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Pro Coach Plan', style: textTheme.titleMedium),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      color: colors.surface2,
+                      child: Text(
+                        'ACTIVE',
+                        style: textTheme.labelSmall?.copyWith(color: colors.success),
                       ),
-                      const SizedBox(height: 32),
-                      if (!isPro)
-                        ElevatedButton(
-                          onPressed: () {
-                            context.read<BillingBloc>().add(
-                              BillingEvent.checkoutRequested(
-                                priceId:
-                                    dotenv.env[AppConstants
-                                        .envStripeProPriceId] ??
-                                    '',
-                                redirectUrl: 'ironlink://billing',
-                              ),
-                            );
-                          },
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: const Size(double.infinity, 50),
-                          ),
-                          child: const Text('Upgrade to Pro'),
-                        ),
-                      if (isPro)
-                        OutlinedButton(
-                          onPressed: () {
-                            _launchUrl(
-                              'https://billing.stripe.com/p/login/test_portal',
-                            );
-                          },
-                          style: OutlinedButton.styleFrom(
-                            minimumSize: const Size(double.infinity, 50),
-                          ),
-                          child: const Text('Manage Billing (Stripe Portal)'),
-                        ),
-                    ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Text('Next billing date: Nov 1, 2026', style: textTheme.bodyMedium),
+                const SizedBox(height: 16),
+                Row(
+                  children: [
+                    Text('\$49.00', style: AppTextStyles.dataStyle(colors, fontSize: 24)),
+                    Text(' / mo', style: textTheme.bodyMedium),
+                  ],
+                ),
+                const SizedBox(height: 24),
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: colors.surface2, // Muted button, not accent
+                      foregroundColor: colors.textPrimary,
+                    ),
+                    child: const Text('MANAGE SUBSCRIPTION'),
                   ),
-                );
-              }(),
-              _ => const Center(child: Text('An error occurred')),
-            };
-          },
-        ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 32),
+          Text('Account Details', style: textTheme.labelLarge),
+          const SizedBox(height: 12),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text('Email Address', style: textTheme.titleSmall),
+            subtitle: Text('coach@ironlink.app', style: textTheme.bodyMedium),
+            trailing: Icon(Icons.edit, size: 16, color: colors.textSecondary),
+            onTap: () {},
+          ),
+          Divider(color: colors.surface2, height: 1),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text('Payment Method', style: textTheme.titleSmall),
+            subtitle: Text('Visa ending in 4242', style: textTheme.bodyMedium),
+            trailing: Icon(Icons.edit, size: 16, color: colors.textSecondary),
+            onTap: () {},
+          ),
+          Divider(color: colors.surface2, height: 1),
+        ],
       ),
     );
   }

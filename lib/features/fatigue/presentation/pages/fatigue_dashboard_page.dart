@@ -11,10 +11,12 @@ class FatigueDashboardPage extends StatelessWidget {
     super.key,
     required this.clientId,
     required this.clientName,
+    this.hideAppBar = false,
   });
 
   final String clientId;
   final String clientName;
+  final bool hideAppBar;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class FatigueDashboardPage extends StatelessWidget {
           getIt<FatigueDashboardBloc>()
             ..add(FatigueDashboardEvent.started(clientId: clientId)),
       child: Scaffold(
-        appBar: AppBar(title: Text('$clientName - Fatigue Dashboard')),
+        appBar: hideAppBar ? null : AppBar(title: Text('$clientName - Fatigue Dashboard')),
         body: BlocBuilder<FatigueDashboardBloc, FatigueDashboardState>(
           builder: (context, state) {
             return switch (state) {

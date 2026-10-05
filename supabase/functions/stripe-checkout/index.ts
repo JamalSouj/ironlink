@@ -29,12 +29,14 @@ serve(async (req) => {
       { global: { headers: { Authorization: authHeader } } }
     );
 
+    const jwt = authHeader.replace('Bearer ', '');
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+      error: authError,
+    } = await supabase.auth.getUser(jwt);
 
-    if (!user) {
-      throw new Error("Unauthorized");
+    if (authError || !user) {
+      throw new Error(`Unauthorized: ${authError?.message || 'User is null'}`);
     }
 
     const { price_id, redirect_url } = await req.json();

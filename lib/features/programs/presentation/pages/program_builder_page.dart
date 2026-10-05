@@ -1,105 +1,120 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ironlink/core/di/injection.dart';
-import 'package:ironlink/features/programs/domain/entities/program_block.dart';
-import 'package:ironlink/features/programs/presentation/bloc/builder/program_builder_bloc.dart';
-import 'package:ironlink/features/programs/presentation/bloc/builder/program_builder_event.dart';
-import 'package:ironlink/features/programs/presentation/bloc/builder/program_builder_state.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_text_styles.dart';
 
 class ProgramBuilderPage extends StatelessWidget {
-  const ProgramBuilderPage({super.key, required this.programId});
-
   final String programId;
 
+  const ProgramBuilderPage({Key? key, required this.programId}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          getIt<ProgramBuilderBloc>()
-            ..add(ProgramBuilderEvent.started(programId: programId)),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Program Builder'),
-          actions: [
-            Builder(
-              builder: (context) {
-                return IconButton(
-                  icon: const Icon(Icons.add),
-                  onPressed: () {
-                    // Quick add block
-                    context.read<ProgramBuilderBloc>().add(
-                      const ProgramBuilderEvent.addBlock(
-                        name: 'New Block',
-                        blockOrder: 1,
-                        focus: 'hypertrophy',
-                      ),
-                    );
-                  },
-                );
-              },
-            ),
-          ],
-        ),
-        body: BlocBuilder<ProgramBuilderBloc, ProgramBuilderState>(
-          builder: (context, state) {
-            return switch (state) {
-              ProgramBuilderInitial() || ProgramBuilderLoading() =>
-                const Center(child: CircularProgressIndicator()),
-              ProgramBuilderError(:final failure) => Center(
-                child: Text('Error: ${failure.message}'),
-              ),
-              ProgramBuilderLoaded(:final blocks) => () {
-                if (blocks.isEmpty) {
-                  return const Center(child: Text('No blocks found. Add one!'));
-                }
-                return ListView.builder(
-                  itemCount: blocks.length,
-                  itemBuilder: (context, index) {
-                    final block = blocks[index];
-                    return _ProgramBlockCard(block: block);
-                  },
-                );
-              }(),
-            };
-          },
-        ),
+    final colors = Theme.of(context).extension<AppColors>()!;
+    final textTheme = Theme.of(context).textTheme;
+
+    // Dummy data for a 4-week macrocycle (2 wks hypertrophy, 1 wk strength, 1 wk peak/deload)
+    final weeks = ['W1', 'W2', 'W3', 'W4'];
+    final blocks = ['Hypertrophy', 'Hypertrophy', 'Strength', 'Peak'];
+    final exercises = ['Back Squat', 'Bench Press', 'Deadlift', 'Pull-Ups'];
+
+    // Subtle tints for blocks
+    Color getBlockColor(String block) {
+      if (block == 'Hypertrophy') return colors.surface1; 
+      if (block == 'Strength') return colors.surface2; 
+      return colors.background; // Peak
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Macrocycle Builder'),
+        actions: [
+          IconButton(icon: const Icon(Icons.zoom_in), onPressed: () {}),
+          TextButton(onPressed: () {}, child: const Text('PUBLISH')),
+        ],
       ),
-    );
-  }
-}
-
-class _ProgramBlockCard extends StatelessWidget {
-  const _ProgramBlockCard({required this.block});
-  final ProgramBlock block;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.all(8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: Column(
         children: [
-          ListTile(
-            title: Text(
-              block.name,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            subtitle: Text('Focus: \${block.focus ?? "None"}'),
-            trailing: IconButton(
-              icon: const Icon(Icons.copy),
-              onPressed: () {
-                // duplicate week logic placeholder
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Duplicate week tapped')),
+          // Header Row (Weeks/Blocks)
+          Row(
+            children: [
+              SizedBox(width: 120), // Empty space for exercise column
+              ...List.generate(weeks.length, (i) {
+                return Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+                    decoration: BoxDecoration(
+                      color: getBlockColor(blocks[i]),
+                      border: Border(
+                        left: BorderSide(color: colors.surface2, width: 1),
+                        bottom: BorderSide(color: colors.surface2, width: 1),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        Text(weeks[i], style: AppTextStyles.dataStyle(colors, fontSize: 12, fontWeight: FontWeight.bold)),
+                        const SizedBox(height: 2),
+                        Text(blocks[i], style: textTheme.labelSmall?.copyWith(fontSize: 10), overflow: TextOverflow.ellipsis),
+                      ],
+                    ),
+                  ),
+                );
+              }),
+            ],
+          ),
+          // Grid (Exercises x Weeks)
+          Expanded(
+            child: ListView.builder(
+              itemCount: exercises.length,
+              itemBuilder: (context, exIndex) {
+                return Row(
+                  children: [
+                    // Exercise Name
+                    Container(
+                      width: 120,
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        border: Border(bottom: BorderSide(color: colors.surface2, width: 1)),
+                      ),
+                      child: Text(exercises[exIndex], style: textTheme.titleSmall),
+                    ),
+                    // Cells for each week
+                    ...List.generate(weeks.length, (wkIndex) {
+                      return Expanded(
+                        child: Container(
+                          height: 60, // Fixed height for rows
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: getBlockColor(blocks[wkIndex]),
+                            border: Border(
+                              left: BorderSide(color: colors.surface2, width: 1),
+                              bottom: BorderSide(color: colors.surface2, width: 1),
+                            ),
+                          ),
+                          child: InkWell(
+                            onTap: () {},
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  // Example dummy data
+                                  wkIndex < 2 ? '3x10' : (wkIndex == 2 ? '5x5' : '3x3'), 
+                                  style: AppTextStyles.dataStyle(colors, fontSize: 12),
+                                ),
+                                Text(
+                                  wkIndex < 2 ? '@ RPE 7' : (wkIndex == 2 ? '@ RPE 8' : '@ RPE 9'), 
+                                  style: AppTextStyles.dataStyle(colors, fontSize: 10).copyWith(color: colors.textSecondary),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+                  ],
                 );
               },
             ),
-          ),
-          const Divider(),
-          const Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Text('Sessions Grid (Placeholder)'),
-          ),
+          )
         ],
       ),
     );

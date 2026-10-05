@@ -9,6 +9,7 @@ import 'package:ironlink/features/auth/presentation/pages/coach_sign_up_page.dar
 import 'package:ironlink/features/auth/presentation/pages/login_page.dart';
 import 'package:ironlink/features/billing/presentation/pages/billing_page.dart';
 import 'package:ironlink/features/coaching/presentation/pages/client_shell_page.dart';
+import 'package:ironlink/features/coaching/presentation/pages/client_detail_dashboard_page.dart';
 import 'package:ironlink/features/coaching/presentation/pages/coach_dashboard_page.dart';
 import 'package:ironlink/features/coaching/presentation/pages/coach_shell_page.dart';
 import 'package:ironlink/features/coaching/presentation/pages/roster_page.dart';
@@ -71,6 +72,26 @@ class AppRouter {
     };
   }
 
+  // ── Transition Helper ─────────────────────────────────────────────────────
+
+  static CustomTransitionPage<T> _fadeTransition<T>({
+    required BuildContext context,
+    required GoRouterState state,
+    required Widget child,
+  }) {
+    return CustomTransitionPage<T>(
+      key: state.pageKey,
+      child: child,
+      transitionDuration: const Duration(milliseconds: 150),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return FadeTransition(
+          opacity: CurveTween(curve: Curves.easeOut).animate(animation),
+          child: child,
+        );
+      },
+    );
+  }
+
   // ── Routes ────────────────────────────────────────────────────────────────
 
   static final List<RouteBase> _routes = [
@@ -78,57 +99,68 @@ class AppRouter {
     GoRoute(
       path: '/auth/login',
       name: 'login',
-      builder: (context, _) => const LoginPage(),
+      pageBuilder: (context, state) => _fadeTransition(context: context, state: state, child: const LoginPage()),
     ),
     GoRoute(
       path: '/auth/coach-signup',
       name: 'coach-signup',
-      builder: (context, _) => const CoachSignUpPage(),
+      pageBuilder: (context, state) => _fadeTransition(context: context, state: state, child: const CoachSignUpPage()),
     ),
     GoRoute(
       path: '/auth/client-signup',
       name: 'client-signup',
-      builder: (context, state) => ClientSignUpPage(
-        // Accept ?invite=<code> query parameter from coach invite links.
+      pageBuilder: (context, state) => _fadeTransition(context: context, state: state, child: ClientSignUpPage(
         inviteCode: state.uri.queryParameters['invite'],
-      ),
+      )),
     ),
 
     // ── Coach shell ─────────────────────────────────────────────────────────
     ShellRoute(
-      builder: (context, state, child) => CoachShellPage(child: child),
+      pageBuilder: (context, state, child) => _fadeTransition(context: context, state: state, child: CoachShellPage(child: child)),
       routes: [
         GoRoute(
           path: '/coach/dashboard',
           name: 'coach-dashboard',
-          builder: (context, _) => const CoachDashboardPage(),
+          pageBuilder: (context, state) => _fadeTransition(context: context, state: state, child: const CoachDashboardPage()),
         ),
         GoRoute(
           path: '/coach/clients',
           name: 'coach-clients',
-          builder: (context, _) => const RosterPage(),
+          pageBuilder: (context, state) => _fadeTransition(context: context, state: state, child: const RosterPage()),
+        ),
+        GoRoute(
+          path: '/coach/clients/:id',
+          name: 'coach-client-detail',
+          pageBuilder: (context, state) {
+            final id = state.pathParameters['id']!;
+            final name = state.uri.queryParameters['name'] ?? 'Client';
+            return _fadeTransition(context: context, state: state, child: ClientDetailDashboardPage(
+              clientId: id,
+              clientName: name,
+            ));
+          },
         ),
         GoRoute(
           path: '/coach/messages',
           name: 'coach-messages',
-          builder: (context, _) => const ConversationsListPage(),
+          pageBuilder: (context, state) => _fadeTransition(context: context, state: state, child: const ConversationsListPage()),
         ),
         GoRoute(
           path: '/coach/billing',
           name: 'coach-billing',
-          builder: (context, _) => const BillingPage(),
+          pageBuilder: (context, state) => _fadeTransition(context: context, state: state, child: const BillingPage()),
         ),
         GoRoute(
           path: '/coach/exercises',
           name: 'coach-exercises',
-          builder: (context, _) => const ExercisesPage(),
+          pageBuilder: (context, state) => _fadeTransition(context: context, state: state, child: const ExercisesPage()),
         ),
         GoRoute(
           path: '/coach/program-builder/:id',
           name: 'program-builder',
-          builder: (context, state) {
+          pageBuilder: (context, state) {
             final id = state.pathParameters['id']!;
-            return ProgramBuilderPage(programId: id);
+            return _fadeTransition(context: context, state: state, child: ProgramBuilderPage(programId: id));
           },
         ),
       ],
@@ -136,32 +168,32 @@ class AppRouter {
 
     // ── Client shell ─────────────────────────────────────────────────────────
     ShellRoute(
-      builder: (context, state, child) => ClientShellPage(child: child),
+      pageBuilder: (context, state, child) => _fadeTransition(context: context, state: state, child: ClientShellPage(child: child)),
       routes: [
         GoRoute(
           path: '/client/today',
           name: 'client-today',
-          builder: (context, _) {
+          pageBuilder: (context, state) {
             final authState = context.read<AuthBloc>().state;
             final clientId =
                 authState is AuthenticatedClient ? authState.user.id : '';
-            return ClientTodayPage(clientId: clientId);
+            return _fadeTransition(context: context, state: state, child: ClientTodayPage(clientId: clientId));
           },
         ),
         GoRoute(
           path: '/client/progressions',
           name: 'client-progressions',
-          builder: (context, _) {
+          pageBuilder: (context, state) {
             final authState = context.read<AuthBloc>().state;
             final clientId =
                 authState is AuthenticatedClient ? authState.user.id : '';
-            return ClientProgressionsPage(clientId: clientId);
+            return _fadeTransition(context: context, state: state, child: ClientProgressionsPage(clientId: clientId));
           },
         ),
         GoRoute(
           path: '/client/messages',
           name: 'client-messages',
-          builder: (context, _) => const ClientMessagesPage(),
+          pageBuilder: (context, state) => _fadeTransition(context: context, state: state, child: const ClientMessagesPage()),
         ),
       ],
     ),

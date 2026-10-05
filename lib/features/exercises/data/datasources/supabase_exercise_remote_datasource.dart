@@ -30,4 +30,25 @@ class SupabaseExerciseRemoteDataSource implements ExerciseRemoteDataSource {
       throw ServerException(message: 'Failed to fetch exercises: $e');
     }
   }
+
+  @override
+  Future<ExerciseModel> addExercise(ExerciseModel exercise) async {
+    try {
+      final user = _client.auth.currentUser;
+      if (user == null) {
+        throw const ServerException(message: 'User not logged in');
+      }
+
+      final data = await _client.from('exercises').insert({
+        'name': exercise.name,
+        'category': exercise.category,
+        'demo_video_url': exercise.demoVideoUrl,
+        'created_by': user.id,
+      }).select().single();
+
+      return ExerciseModel.fromJson(data);
+    } catch (e) {
+      throw ServerException(message: 'Failed to add exercise: $e');
+    }
+  }
 }

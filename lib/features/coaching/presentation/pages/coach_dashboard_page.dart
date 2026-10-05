@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ironlink/core/di/injection.dart';
 import 'package:ironlink/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ironlink/features/auth/presentation/bloc/auth_state.dart';
-import 'package:go_router/go_router.dart';
 import 'package:ironlink/features/coaching/domain/entities/client_summary.dart';
-import 'package:ironlink/features/programs/domain/usecases/create_program.dart';
 import 'package:ironlink/features/coaching/presentation/bloc/roster/roster_bloc.dart';
 import 'package:ironlink/features/coaching/presentation/bloc/roster/roster_event.dart';
 import 'package:ironlink/features/coaching/presentation/bloc/roster/roster_state.dart';
+import 'package:ironlink/features/programs/domain/usecases/create_program.dart';
 
 class CoachDashboardPage extends StatelessWidget {
   const CoachDashboardPage({super.key});
@@ -112,6 +112,7 @@ class _DashboardView extends StatelessWidget {
           title: const Text('Create New Program'),
           subtitle: const Text('Build a template or assign to a client'),
           onTap: () {
+            
             showDialog(
               context: context,
               builder: (ctx) => _CreateProgramDialog(
@@ -163,7 +164,7 @@ class _CreateProgramDialogState extends State<_CreateProgramDialog> {
           ),
           const SizedBox(height: 16),
           DropdownButtonFormField<String>(
-            value: _selectedClientId,
+            initialValue: _selectedClientId,
             hint: const Text('Select Client'),
             items: widget.clients
                 .map(
