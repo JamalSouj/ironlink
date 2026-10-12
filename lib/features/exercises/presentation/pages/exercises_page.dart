@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ironlink/features/exercises/data/datasources/supabase_exercise_remote_datasource.dart';
 import 'package:ironlink/features/exercises/data/repositories/exercise_repository_impl.dart';
+import 'package:ironlink/features/exercises/domain/entities/exercise.dart';
+import 'package:ironlink/features/exercises/domain/usecases/add_exercise.dart';
 import 'package:ironlink/features/exercises/domain/usecases/get_exercises.dart';
 import 'package:ironlink/features/exercises/presentation/bloc/exercise_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -16,7 +18,7 @@ class ExercisesPage extends StatelessWidget {
         final remoteDataSource = SupabaseExerciseRemoteDataSource(Supabase.instance.client);
         final repository = ExerciseRepositoryImpl(remoteDataSource: remoteDataSource);
         final getExercises = GetExercises(repository);
-        return ExerciseBloc(getExercises: getExercises)..add(FetchExercisesEvent());
+        return ExerciseBloc(getExercises: getExercises, addExercise: AddExercise(repository))..add(FetchExercisesEvent());
       },
       child: Scaffold(
         appBar: AppBar(title: const Text('Exercises')),

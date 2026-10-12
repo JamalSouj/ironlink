@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "/home/jamal/Downloads/concours/project/ironlink/linux"
+    "cmake.sourceDirectory": "/home/jamal/Downloads/concours/project/ironlink/linux",
+    "java.configuration.updateBuildConfiguration": "disabled"
 }

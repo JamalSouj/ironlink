@@ -307,14 +307,7 @@ class _ClientSignUpPageState extends State<ClientSignUpPage> {
                                     // until validation is wired to Supabase.
                                   ),
                                   const SizedBox(height: 4),
-                                  Text(
-                                    '// TODO: validate against invitations table',
-                                    style: TextStyle(
-                                      fontSize: 11,
-                                      color: colorScheme.outline,
-                                      fontStyle: FontStyle.italic,
-                                    ),
-                                  ),
+                                  
                                 ],
 
                                 const SizedBox(height: 28),

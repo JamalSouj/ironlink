@@ -46,7 +46,7 @@ class AppTheme {
       textTheme: textTheme,
       
       // Global Component Themes to enforce the brutalist/sharp geometry
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: appColors.surface1,
         elevation: 0, // No drop shadows
         margin: EdgeInsets.zero,

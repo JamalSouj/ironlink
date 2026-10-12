@@ -5,7 +5,7 @@ import 'app_colors.dart';
 class AppTextStyles {
   // Base font families
   static final String _uiFontFamily = GoogleFonts.inter().fontFamily!;
-  static final String _dataFontFamily = GoogleFonts.jetbrainsMono().fontFamily!;
+  static final String _dataFontFamily = GoogleFonts.jetBrainsMono().fontFamily!;
 
   // Build the complete TextTheme based on the provided colors
   static TextTheme createTextTheme(AppColors colors) {
